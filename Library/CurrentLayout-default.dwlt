@@ -737,34 +737,48 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
     - Assets/#MYASSET/Core
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
   - Assets/#MYASSET/Core
+=======
+    - Assets/#MYASSET/Scripts/Characters
+  m_ViewMode: 1
+  m_StartGridSize: 64
+  m_LastFolders:
+  - Assets/#MYASSET/Scripts/Characters
+>>>>>>> b3fabdcea1117ad8e7f0bc0a1609929c3cb00748
   m_LastFoldersGridSize: -1
   m_LastProjectPath: F:\item\Unity\Project\UnityProject\SomethingShootingCore
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: 24360000
     m_LastClickedID: 13860
     m_ExpandedIDs: 000000001e3600002236000026360000
+=======
+    m_SelectedIDs: 2a360000
+    m_LastClickedID: 13866
+    m_ExpandedIDs: 00000000203600002436000028360000
+>>>>>>> b3fabdcea1117ad8e7f0bc0a1609929c3cb00748
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Systems
+      m_OriginalName: Systems
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 13872
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -778,7 +792,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 000000001e360000
+=======
+    m_ExpandedIDs: 0000000020360000
+>>>>>>> b3fabdcea1117ad8e7f0bc0a1609929c3cb00748
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
