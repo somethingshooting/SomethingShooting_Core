@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 1920
-    y: -44
+    x: 0
+    y: 43
     width: 1920
     height: 997
   m_ShowMode: 4
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_MinSize: {x: 579, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 100
+  controlID: 65
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_MinSize: {x: 303, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 101
+  controlID: 109
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_MinSize: {x: 303, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 102
+  controlID: 110
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -269,8 +269,8 @@ MonoBehaviour:
     y: 0
     width: 346
     height: 947
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -434,8 +434,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1920
-    y: -14
+    x: 0
+    y: 73
     width: 289
     height: 571
   m_ViewDataDictionary: {fileID: 0}
@@ -630,8 +630,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 2210
-    y: -14
+    x: 290
+    y: 73
     width: 1282
     height: 571
   m_ViewDataDictionary: {fileID: 0}
@@ -719,8 +719,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1920
-    y: 578
+    x: 0
+    y: 665
     width: 1573
     height: 334
   m_ViewDataDictionary: {fileID: 0}
@@ -737,20 +737,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/#MYASSET/Scripts/Systems
+    - Assets/#MYASSET/Core
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/#MYASSET/Scripts/Systems
+  - Assets/#MYASSET/Core
   m_LastFoldersGridSize: -1
   m_LastProjectPath: F:\item\Unity\Project\UnityProject\SomethingShootingCore
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a6370000
-    m_LastClickedID: 14246
-    m_ExpandedIDs: 00000000f4350000923700009a370000
+    m_SelectedIDs: 24360000
+    m_LastClickedID: 13860
+    m_ExpandedIDs: 000000001e3600002236000026360000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -778,7 +778,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000f4350000
+    m_ExpandedIDs: 000000001e360000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -805,7 +805,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 282700005848ffff3426000030bfffff322600001826000000000000540600003a3600005606000054260000882cffff822600007c260000ac260000e4260000ca2600004c2800000a280000563100008c32ffff989b0000509c0000784901005c49010040490100082d00009a3d00001c4500009a42000082450000ee2e0000ac4a00008a340000be3300004c2e000042340000463300009c2c00007a3000007e2d0000c6290000ae2e0000142c0000c23000005e2a00007a34000006310000cc340000942a000004310000922a0000ca340000ca3d000040300000f62f000044300000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -881,8 +881,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 3494
-    y: -14
+    x: 1574
+    y: 73
     width: 345
     height: 926
   m_ViewDataDictionary: {fileID: 0}
