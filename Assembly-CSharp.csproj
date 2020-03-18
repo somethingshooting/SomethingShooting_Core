@@ -67,7 +67,6 @@
     <Compile Include="Assets\#MYASSET\Core\Move.cs" />
     <Compile Include="Assets\#MYASSET\Scripts\Characters\ChatacterState.cs" />
     <Compile Include="Assets\#MYASSET\Scripts\Characters\ICharacterMover.cs" />
-    <Compile Include="Assets\#MYASSET\Scripts\Characters\Parameter.cs" />
     <Compile Include="Assets\#MYASSET\Scripts\Player\PlayerMover.cs" />
     <Compile Include="Assets\#MYASSET\Scripts\Skills\ActiveSkill.cs" />
     <Compile Include="Assets\#MYASSET\Scripts\Skills\ISkill.cs" />
