@@ -8,5 +8,5 @@ public interface ISkill
 
     SkillAttributeType AttributeType { get; }
 
-    void SkillStart();
+    void PlaySkill();
 }

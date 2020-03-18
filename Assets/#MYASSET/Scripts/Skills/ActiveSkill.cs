@@ -18,7 +18,15 @@ public abstract class ActiveSkill : MonoBehaviour, ISkill
 
     protected abstract void Init();
 
-    public abstract void SkillStart();
+    public void PlaySkill()
+    {
+        _IsRunning.Value = true;
+        SkillStart();
+    }
+
+    protected abstract void SkillStart();
+
+    protected abstract void SkillUpdate();
 
     protected virtual void Start()
     {
@@ -32,6 +40,10 @@ public abstract class ActiveSkill : MonoBehaviour, ISkill
                     RecastTimeCount = 0;
                 }
             });
+
+        this.UpdateAsObservable()
+            .Where(_ => IsRunning.Value)
+            .Subscribe(_ => SkillUpdate());
 
         Init();
     }

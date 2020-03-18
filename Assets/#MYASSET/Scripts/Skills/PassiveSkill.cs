@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 public abstract class PassiveSkill : MonoBehaviour, ISkill
@@ -7,12 +9,20 @@ public abstract class PassiveSkill : MonoBehaviour, ISkill
     public abstract string SkillName { get; }
     public abstract SkillAttributeType AttributeType { get; }
 
-    protected abstract void Init();
+    protected bool _IsRunning = false;
 
-    public abstract void SkillStart();
-
-    protected virtual void Start()
+    public void PlaySkill()
     {
-        Init();
+        SkillStart();
     }
+
+    protected virtual void SkillStart()
+    {
+        _IsRunning = true;
+        this.UpdateAsObservable()
+            .Where(_ => _IsRunning)
+            .Subscribe(_ => SkillUpdate());
+    }
+
+    protected abstract void SkillUpdate();
 }
