@@ -1,18 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
 
-public class ActiveSkill : MonoBehaviour
+public abstract class ActiveSkill : MonoBehaviour, ISkill
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public abstract string SkillName { get; }
+    public abstract SkillAttributeType AttributeType { get; }
 
-    // Update is called once per frame
-    void Update()
+    public IReadOnlyReactiveProperty<bool> IsRunning => _IsRunning;
+    protected BoolReactiveProperty _IsRunning = new BoolReactiveProperty(false);
+
+    /// <summary> スキルのリキャスト時間 </summary>
+    public float RecastTime = 0;
+    public float RecastTimeCount { get; protected set; } = 0;
+
+    protected abstract void Init();
+
+    public abstract void SkillStart();
+
+    protected virtual void Start()
     {
-        
+        this.UpdateAsObservable()
+            .Where(_ => RecastTimeCount > 0)
+            .Subscribe(_ =>
+            {
+                RecastTimeCount -= Time.deltaTime;
+                if (RecastTimeCount < 0)
+                {
+                    RecastTimeCount = 0;
+                }
+            });
+
+        Init();
     }
 }

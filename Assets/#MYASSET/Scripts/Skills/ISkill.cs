@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ISkill : MonoBehaviour
+public interface ISkill
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    string SkillName { get; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    SkillAttributeType AttributeType { get; }
+
+    void SkillStart();
 }

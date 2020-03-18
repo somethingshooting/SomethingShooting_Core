@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PassiveSkill : MonoBehaviour
+public abstract class PassiveSkill : MonoBehaviour, ISkill
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public abstract string SkillName { get; }
+    public abstract SkillAttributeType AttributeType { get; }
 
-    // Update is called once per frame
-    void Update()
+    protected abstract void Init();
+
+    public abstract void SkillStart();
+
+    protected virtual void Start()
     {
-        
+        Init();
     }
 }
