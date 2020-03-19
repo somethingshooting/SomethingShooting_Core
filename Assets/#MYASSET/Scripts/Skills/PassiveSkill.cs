@@ -9,7 +9,7 @@ public abstract class PassiveSkill : MonoBehaviour, ISkill
     public abstract string SkillName { get; }
     public abstract SkillAttributeType AttributeType { get; }
 
-    protected bool _IsRunning = false;
+    protected abstract void Init();
 
     public void PlaySkill()
     {
@@ -18,11 +18,16 @@ public abstract class PassiveSkill : MonoBehaviour, ISkill
 
     protected virtual void SkillStart()
     {
-        _IsRunning = true;
-        this.UpdateAsObservable()
-            .Where(_ => _IsRunning)
-            .Subscribe(_ => SkillUpdate());
+
     }
 
     protected abstract void SkillUpdate();
+
+    protected virtual void Start()
+    {
+        this.UpdateAsObservable()
+            .Subscribe(_ => SkillUpdate());
+
+        Init();
+    }
 }
