@@ -9,10 +9,14 @@ public abstract class PassiveSkill : MonoBehaviour, ISkill
     public abstract string SkillName { get; }
     public abstract SkillAttributeType AttributeType { get; }
 
+    public IReadOnlyReactiveProperty<bool> IsRunning => _IsRunning;
+    protected BoolReactiveProperty _IsRunning = new BoolReactiveProperty(false);
+
     protected abstract void Init();
 
     public void PlaySkill()
     {
+        _IsRunning.Value = true;
         SkillStart();
     }
 
