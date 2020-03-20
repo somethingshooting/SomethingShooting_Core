@@ -12,7 +12,7 @@ public class QuestScaner : MonoBehaviour
     void Start()
     {
         var data = ScriptableObject.CreateInstance(typeof(QuestData)) as QuestData;
-        AssetDatabase.CreateAsset(data, "Assets/#MYASSET/Scripts/Systems/QuestData");
+        AssetDatabase.CreateAsset(data, "Assets/#MYASSET/Scripts/Systems/QuestData"+_Name+".asset");
         GameObject[] objects = SortWithZ(GameObject.FindGameObjectsWithTag("Enemy"));
         data.Enemies = new QuestData.EnemyData[objects.Length];
         for (int i = 0; i < objects.Length; i++)
