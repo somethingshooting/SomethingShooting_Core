@@ -19,11 +19,11 @@ public class SkillController : MonoBehaviour
 
         InputProvider.NormalShotButtonPushed
             .Where(_ => _)
-            .Subscribe(_ => PlayAstiveSkill(0));
+            .Subscribe(_ => PlayAstiveSkill(-1));
 
         InputProvider.Skill1ButtonPushed
             .Where(_ => _)
-            .Subscribe(_ => PlayAstiveSkill(1));
+            .Subscribe(_ => PlayAstiveSkill(0));
 
         PlayPassiveSills();
     }
@@ -43,7 +43,7 @@ public class SkillController : MonoBehaviour
 
         if (playable)
         {
-            if (num == 0)
+            if (num == -1)
                 NormalShotSkill.PlaySkill();
             else
                 ActiveSkills[num].PlaySkill();
