@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class SkillController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private IInputProvider InputProvider;
+
+    public ActiveSkill NormalShotSkill { get; private set; }
+
+    public List<ActiveSkill> ActiveSkills { get; private set; }
+
+    public List<PassiveSkill> PassiveSkills { get; private set; }
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeSkill()
     {
-        
+
+    }
+
+    public void RemoveSkill()
+    {
+
+    }
+
+    public void AddSkill()
+    {
+
     }
 }
