@@ -1,0 +1,110 @@
+@startuml MainSystemClasses
+package Player{
+        class PlayerMover <MonoBehaviour>{
+            + IInputProvider InputProvider
+        }
+    }
+
+package Characters{
+    class CharacterState <MonoBehaviour>{
+        + Parameter CurrentHP
+        + Parameter MaxHP
+        + Parameter ATK
+        + Parameter DEF
+
+        + Parameter FireAttribiteCorrection
+        + Parameter RecastTimeCorrection
+    }
+
+    class Parameter{
+        + int Value
+        + int DefaultValue
+        - ReactiveProperty<Dictionery<object, int>> _CorrectionList
+
+        - void UpdateVaule()
+        + void AddCorrection(object source, int value)
+        + void RemoveCrrection(object source)
+    }
+
+    interface ICharacterMover{
+        + void Move()
+    }
+    ICharacterMover <|-- PlayerMover
+
+    interface IGetDamage{
+        + void GetDamage(int vaule, SkillAttributeType Attribute)
+    }
+}
+
+package Bullet{
+    abstract BulletBase <MonoBehaviour>{
+
+    }
+
+    interface IBulletMove{
+        void Move()
+    }
+    IBulletMove <|-- BulletBase
+
+    interface IBullet{
+        void OnDestroy()
+    }
+    IBullet <|-- BulletBase
+}
+
+package Skill{
+    class SkillController <MonoBehaviour>{
+        + List<ActiveSkill> ActiveSkillList
+        + List<PassiveSkill> PassiveSkillList
+    }
+
+    abstract ActiveSkill <MonoBehaviour>{
+
+    }
+
+    abstract PassiveSkill <MonoBehaviour>{
+
+    }
+
+    enum SkillAttributeType{
+        Ice
+        Fire
+        atc...
+    }
+    ISkill <- SkillAttributeType
+
+    interface ISkill{
+        + string SkillName
+
+        + SkillAttributeType SkillAttribute
+    }
+    ISkill <|-- ActiveSkill
+    ISkill <|-- PassiveSkill
+}
+
+package GameSystems{
+    class InputController <MonoBehaviour>{
+        - void SetPlayerMoveDirection()
+        - void SetNormalShotButton()
+    }
+    IInputProvider <|-down- InputController
+
+    interface IInputProvider{
+        + IReadOnryReactiveProperty<Vecter3> PlayerMoveDirection
+        + IReadOnryReactiveProperty<bool> NormalShotButtonPushed
+    }
+    SkillController <-- IInputProvider
+    PlayerMover <-- IInputProvider
+}
+
+package Quest{
+    class QuestManager{
+
+    }
+
+    class Quest{
+
+    }
+}
+
+@enduml
