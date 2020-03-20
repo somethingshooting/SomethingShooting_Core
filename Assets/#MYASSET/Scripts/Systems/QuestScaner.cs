@@ -8,13 +8,11 @@ public class QuestScaner : MonoBehaviour
 {
     [SerializeField]
     private string _Name;
-    [SerializeField]
-    private string _File;
     // Start is called before the first frame update
     void Start()
     {
-        QuestData data = ScriptableObject.CreateInstance(typeof(QuestData)) as QuestData;
-        AssetDatabase.CreateAsset((ScriptableObject)data, _File);
+        var data = ScriptableObject.CreateInstance(typeof(QuestData)) as QuestData;
+        AssetDatabase.CreateAsset(data, "Assets/#MYASSET/Scripts/Systems/QuestData");
         GameObject[] objects = SortWithZ(GameObject.FindGameObjectsWithTag("Enemy"));
         data.Enemies = new QuestData.EnemyData[objects.Length];
         for (int i = 0; i < objects.Length; i++)
