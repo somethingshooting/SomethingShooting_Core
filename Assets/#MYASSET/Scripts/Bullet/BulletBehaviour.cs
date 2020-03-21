@@ -10,31 +10,17 @@ public abstract class BulletBehaviour : MonoBehaviour, IBullet
 
     public SkillAttributeType AttributeType;
 
-    public void OnDestroy()
+    public void DestroyBullet()
     {
         Destroy(gameObject);
     }
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        switch (other.tag)
+        if ((gameObject.tag == "PlayerBullet" && other.tag == "Enemy") || (gameObject.tag == "EnemyBullet" && other.tag == "Player"))
         {
-            case "Player":
-                if (gameObject.tag == "EnemyBullet")
-                {
-                    other.GetComponent<IHitPointObject>()
+            other.GetComponent<IHitPointObject>()
                         .GetDamage(ATK.Value, AttributeType);
-                }
-                break;
-            case "Enemy":
-                if (gameObject.tag == "PlayerBullet")
-                {
-                    other.GetComponent<IHitPointObject>()
-                        .GetDamage(ATK.Value, AttributeType);
-                }
-                break;
-            default:
-                break;
         }
     }
 }
