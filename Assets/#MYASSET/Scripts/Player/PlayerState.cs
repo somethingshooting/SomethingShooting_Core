@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChatacterState : MonoBehaviour
+public class PlayerState : MonoBehaviour, ICharacterState
 {
     // Start is called before the first frame update
     void Start()
