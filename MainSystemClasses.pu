@@ -65,19 +65,19 @@ package Characters{
 }
 
 package Bullet{
-    abstract BulletBase <<MonoBehaviour>>{
-
+    abstract BulletBehaviour <<MonoBehaviour>>{
+        # void OnTriggerEnter(Collider other)
     }
 
     interface IBulletMove{
         void Move()
     }
-    IBulletMove <|.. BulletBase
+    IBulletMove <|.. BulletBehaviour
 
     interface IBullet{
         void OnDestroy()
     }
-    IBullet <|.. BulletBase
+    IBullet <|.. BulletBehaviour
 }
 
 package Skill{
