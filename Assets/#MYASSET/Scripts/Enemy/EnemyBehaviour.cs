@@ -11,6 +11,13 @@ public abstract class EnemyBehaviour : MonoBehaviour, IHitPointObject
 
     public virtual void GetDamage(int value,SkillAttributeType attribute)
     {
-
+        
     }
+
+    private EnemyState state;
+    public void Start()
+    {
+        state = GetComponent<EnemyState>();
+    }
+
 }
