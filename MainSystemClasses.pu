@@ -1,32 +1,57 @@
 @startuml MainSystemClasses
-package Player{
-    class PlayerMover <<MonoBehaviour>>{
-        + Vecter2 Screen
-        + float Speed
-        + IInputProvider InputProvider
-
-        - void Start()
-        - void Update()
-        + void OndrawGizmos()
-    }
-}
-
-package Enemy{
-    class EnemyController <<MonoBehaviour>>{
-
-    }
-}
-
 package Characters{
-    class CharacterState <<MonoBehaviour>>{
-        + Parameter CurrentHP
-        + Parameter MaxHP
-        + Parameter ATK
-        + Parameter DEF
+    package Player{
+        class PlayerState <<MonoBehaviour>>{
+            + Parameter CurrentHP
+            + Parameter MaxHP
+            + Parameter ATK
 
-        + Parameter FireAttribiteCorrection
-        + Parameter RecastTimeCorrection
+            + Parameter FireAttribiteCorrection
+            + Parameter RecastTimeCorrection
+        }
+
+        class PlayerMover <<MonoBehaviour>>{
+            + Vecter2 Screen
+            + float Speed
+            + IInputProvider InputProvider
+
+            - void Start()
+            - void Update()
+            + void OndrawGizmos()
+        }
     }
+
+    package Enemy{
+        class EnemyState <<MonoBehaviour>>{
+            + Parameter CurrentHP
+            + Parameter MaxHP
+            + Parameter ATK
+        }
+
+        abstract EnemyBehaviour <<MonoBehaviour>>{
+            + IObserbable<Unit> DeadSubject
+            # Subject<Unit> _DeadSubject
+
+            # {abstract} void Init()
+            + void GetDamage()
+        }
+        EnemyState <- EnemyBehaviour
+    }
+
+    interface IHitPointObject{
+        IObserbable<Unit> DeadSubject
+
+        void GetDamage(int vaule, SkillAttributeType Attribute)
+    }
+    IHitPointObject <|.. EnemyBehaviour
+
+    interface ICharacterState{
+        Parameter CurrentHP
+        Parameter MaxHP
+        Parameter ATK
+    }
+    ICharacterState <|.. PlayerState
+    ICharacterState <|.. EnemyState
 
     class Parameter{
         + int Value
@@ -36,19 +61,6 @@ package Characters{
         - void UpdateVaule()
         + void AddCorrection(object source, int value)
         + void RemoveCrrection(object source)
-    }
-
-    interface ICharacterMover{
-        void Move()
-    }
-    ICharacterMover <|-- PlayerMover
-
-    interface ICharacter{
-
-    }
-
-    interface IGetDamage{
-        void GetDamage(int vaule, SkillAttributeType Attribute)
     }
 }
 
@@ -60,12 +72,12 @@ package Bullet{
     interface IBulletMove{
         void Move()
     }
-    IBulletMove <|-- BulletBase
+    IBulletMove <|.. BulletBase
 
     interface IBullet{
         void OnDestroy()
     }
-    IBullet <|-- BulletBase
+    IBullet <|.. BulletBase
 }
 
 package Skill{
@@ -111,7 +123,7 @@ package Skill{
         Fire
         atc...
     }
-    ISkill <- SkillAttributeType
+    SkillAttributeType <- ISkill
 
     interface ISkill{
         string SkillName
@@ -120,8 +132,8 @@ package Skill{
 
         void PlaySkill()
     }
-    ISkill <|-- ActiveSkill
-    ISkill <|-- PassiveSkill
+    ISkill <|.. ActiveSkill
+    ISkill <|.. PassiveSkill
 }
 
 package GameSystems{
@@ -129,7 +141,7 @@ package GameSystems{
         - void SetPlayerMoveDirection()
         - void SetNormalShotButton()
     }
-    IInputProvider <|-down- InputController
+    IInputProvider <|. InputController
 
     interface IInputProvider{
         IReadOnryReactiveProperty<Vecter3> PlayerMoveDirection
@@ -140,13 +152,6 @@ package GameSystems{
 }
 
 package Quest{
-    class QuestScaner <<MonoBehaviour>>{
-        - string _Name
-
-        - void Start()
-        - GameObject[] SortWithZ(GameObject[] objects)
-    }
-
     class QuestData <<ScriptableObject>>{
         + EnemyData[] Enemys
     }
@@ -155,10 +160,6 @@ package Quest{
         + Vecter3 Position
         + GameObject Prefab
         + bool Frag
-    }
-
-    class QuestFlagObject <<MonoBehaviour>>{
-        + void OndrawGizmos()
     }
 
     class StageData <<MonoBehaviour>>{
