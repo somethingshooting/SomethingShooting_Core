@@ -1,18 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 public abstract class EnemyBehaviour : MonoBehaviour, IHitPointObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public IObservable<Unit> DeadSubject => _DeadSubject;
+    protected Subject<Unit> _DeadSubject; 
 
-    // Update is called once per frame
-    void Update()
+    public virtual void GetDamage(int value,SkillAttributeType attribute)
     {
-        
+
     }
 }
