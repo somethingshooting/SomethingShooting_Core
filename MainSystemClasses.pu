@@ -1,20 +1,57 @@
 @startuml MainSystemClasses
-package Player{
-        class PlayerMover <MonoBehaviour>{
+package Characters{
+    package Player{
+        class PlayerState <<MonoBehaviour>>{
+            + Parameter CurrentHP
+            + Parameter MaxHP
+            + Parameter ATK
+
+            + Parameter FireAttribiteCorrection
+            + Parameter RecastTimeCorrection
+        }
+
+        class PlayerMover <<MonoBehaviour>>{
+            + Vecter2 Screen
+            + float Speed
             + IInputProvider InputProvider
+
+            - void Start()
+            - void Update()
+            + void OndrawGizmos()
         }
     }
 
-package Characters{
-    class CharacterState <MonoBehaviour>{
-        + Parameter CurrentHP
-        + Parameter MaxHP
-        + Parameter ATK
-        + Parameter DEF
+    package Enemy{
+        class EnemyState <<MonoBehaviour>>{
+            + Parameter CurrentHP
+            + Parameter MaxHP
+            + Parameter ATK
+        }
 
-        + Parameter FireAttribiteCorrection
-        + Parameter RecastTimeCorrection
+        abstract EnemyBehaviour <<MonoBehaviour>>{
+            + IObserbable<Unit> DeadSubject
+            # Subject<Unit> _DeadSubject
+
+            # {abstract} void Init()
+            + void GetDamage()
+        }
+        EnemyState <- EnemyBehaviour
     }
+
+    interface IHitPointObject{
+        IObserbable<Unit> DeadSubject
+
+        void GetDamage(int vaule, SkillAttributeType Attribute)
+    }
+    IHitPointObject <|.. EnemyBehaviour
+
+    interface ICharacterState{
+        Parameter CurrentHP
+        Parameter MaxHP
+        Parameter ATK
+    }
+    ICharacterState <|.. PlayerState
+    ICharacterState <|.. EnemyState
 
     class Parameter{
         + int Value
@@ -25,45 +62,60 @@ package Characters{
         + void AddCorrection(object source, int value)
         + void RemoveCrrection(object source)
     }
-
-    interface ICharacterMover{
-        + void Move()
-    }
-    ICharacterMover <|-- PlayerMover
-
-    interface IGetDamage{
-        + void GetDamage(int vaule, SkillAttributeType Attribute)
-    }
 }
 
 package Bullet{
-    abstract BulletBase <MonoBehaviour>{
+    abstract BulletBase <<MonoBehaviour>>{
 
     }
 
     interface IBulletMove{
         void Move()
     }
-    IBulletMove <|-- BulletBase
+    IBulletMove <|.. BulletBase
 
     interface IBullet{
         void OnDestroy()
     }
-    IBullet <|-- BulletBase
+    IBullet <|.. BulletBase
 }
 
 package Skill{
-    class SkillController <MonoBehaviour>{
+    class SkillController <<MonoBehaviour>>{
         + List<ActiveSkill> ActiveSkillList
         + List<PassiveSkill> PassiveSkillList
     }
 
-    abstract ActiveSkill <MonoBehaviour>{
+    abstract ActiveSkill <<MonoBehaviour>>{
+        + {abstract} string SkillName
+        + {abstract} SkillAttributeType SkillAttribute
+        + IReadOnryReactiveProperty<bool> IsRunning
+        # BoolReactiveProperty _IsRunning
+        + float RecastTime
+        + float RecastTimeCount
+        + Parameter RecastTimeCorrection
+        # float SkillTIme
+        # float SkillTimeCount
 
+        # {abstract} void Init()
+        + void PlaySkill()
+        # {abstract} void SkillStart()
+        # {abstract} void SkillUpdate()
+        # void SkillEnd()
+        # void Start()
     }
 
-    abstract PassiveSkill <MonoBehaviour>{
+    abstract PassiveSkill <<MonoBehaviour>>{
+        + {abstract} string SkillName
+        + {abstract} SkillAttributeType SkillAttribute
+        + IReadOnryReactiveProperty<bool> IsRunning
+        # BoolReactiveProperty _IsRunning
 
+        # {abstract} void Init()
+        + void PlaySkill()
+        # void SkillStart()
+        # {abstract} void SkillUpdate()
+        # void Start()
     }
 
     enum SkillAttributeType{
@@ -71,39 +123,47 @@ package Skill{
         Fire
         atc...
     }
-    ISkill <- SkillAttributeType
+    SkillAttributeType <- ISkill
 
     interface ISkill{
-        + string SkillName
+        string SkillName
+        SkillAttributeType SkillAttribute
+        IReadOnryReactiveProperty<bool> IsRunning
 
-        + SkillAttributeType SkillAttribute
+        void PlaySkill()
     }
-    ISkill <|-- ActiveSkill
-    ISkill <|-- PassiveSkill
+    ISkill <|.. ActiveSkill
+    ISkill <|.. PassiveSkill
 }
 
 package GameSystems{
-    class InputController <MonoBehaviour>{
+    class InputController <<MonoBehaviour>>{
         - void SetPlayerMoveDirection()
         - void SetNormalShotButton()
     }
-    IInputProvider <|-down- InputController
+    IInputProvider <|. InputController
 
     interface IInputProvider{
-        + IReadOnryReactiveProperty<Vecter3> PlayerMoveDirection
-        + IReadOnryReactiveProperty<bool> NormalShotButtonPushed
+        IReadOnryReactiveProperty<Vecter3> PlayerMoveDirection
+        IReadOnryReactiveProperty<bool> NormalShotButtonPushed
     }
     SkillController <-- IInputProvider
     PlayerMover <-- IInputProvider
 }
 
 package Quest{
-    class QuestManager{
-
+    class QuestData <<ScriptableObject>>{
+        + EnemyData[] Enemys
     }
 
-    class Quest{
+    class EnemyData {
+        + Vecter3 Position
+        + GameObject Prefab
+        + bool Frag
+    }
 
+    class StageData <<MonoBehaviour>>{
+        - QuestData[] quests
     }
 }
 
