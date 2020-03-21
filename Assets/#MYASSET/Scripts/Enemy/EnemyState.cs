@@ -15,7 +15,4 @@ public class EnemyState : MonoBehaviour, ICharacterState
 
     public Parameter ATK => _ATK;
     [SerializeField] private Parameter _ATK = new Parameter(1);
-
-    public Parameter CoolTime => _CoolTime;
-    [SerializeField] private Parameter _CoolTime = new Parameter(1);
 }

@@ -11,6 +11,4 @@ public interface ICharacterState
     Parameter Barrier { get; }
 
     Parameter ATK { get; }
-
-    Parameter CoolTime { get; }
 }

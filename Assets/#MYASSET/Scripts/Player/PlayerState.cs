@@ -19,6 +19,6 @@ public class PlayerState : MonoBehaviour, ICharacterState
     public Parameter CoolTime => _CoolTime;
     [SerializeField] private Parameter _CoolTime = new Parameter(1);
 
-    public Parameter InvincibleTime => _InvincibleTime;
-    [SerializeField] private Parameter _InvincibleTime = new Parameter(0);
+    public Parameter HitInvincibleTime => _HitInvincibleTime;
+    [SerializeField] private Parameter _HitInvincibleTime = new Parameter(0);
 }
