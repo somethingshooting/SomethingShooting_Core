@@ -1,9 +1,15 @@
 @startuml MainSystemClasses
 package Player{
-        class PlayerMover <MonoBehaviour>{
-            + IInputProvider InputProvider
-        }
+    class PlayerMover <MonoBehaviour>{
+        + IInputProvider InputProvider
     }
+}
+
+package Enemy{
+    class EnemyController{
+        
+    }
+}
 
 package Characters{
     class CharacterState <MonoBehaviour>{
@@ -30,6 +36,10 @@ package Characters{
         + void Move()
     }
     ICharacterMover <|-- PlayerMover
+
+    interface ICharacter{
+
+    }
 
     interface IGetDamage{
         + void GetDamage(int vaule, SkillAttributeType Attribute)
