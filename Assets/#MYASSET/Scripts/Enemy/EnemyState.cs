@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class EnemyState : MonoBehaviour, ICharacterState
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Parameter CurrentHP { get; } = new Parameter(10);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Parameter MaxHP { get; } = new Parameter(10);
+
+    public Parameter Barrier { get; } = new Parameter(0);
+
+    public Parameter ATK { get; } = new Parameter(1);
+
+    public Parameter CoolTime { get; } = new Parameter(1);
 }

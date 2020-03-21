@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UniRx;
 
 [Serializable]
 public class Parameter
 {
-    public int Value { get; private set; }
+    public int Value => _Value;
+    [SerializeField] private int _Value;
 
-    public int DefaultVaule { get; private set; }
+    public int DefaultVaule => _DefaultValue;
+    [SerializeField] private int _DefaultValue;
 
     /// <summary> 補正値のリスト </summary>
     private ReactiveProperty<Dictionary<object, int>> _CorrectionList = new ReactiveProperty<Dictionary<object, int>>();
@@ -15,7 +18,7 @@ public class Parameter
     // コンストラクタ
     public Parameter(int defaultVaule)
     {
-        this.DefaultVaule = defaultVaule;
+        this._DefaultValue = defaultVaule;
 
         _CorrectionList
             .Subscribe(_ => UpdateVaule());
