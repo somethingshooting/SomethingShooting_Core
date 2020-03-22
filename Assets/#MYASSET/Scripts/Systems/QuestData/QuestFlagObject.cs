@@ -6,7 +6,6 @@ public class QuestFlagObject : MonoBehaviour
 {
     public void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawIcon(transform.position,"QuestFlag");
+        Gizmos.DrawIcon(transform.position+new Vector3(0,2,0),"QuestFlag");
     }
 }
