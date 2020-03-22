@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class StageData : ScriptableObject
 {
-   public QuestData[] quests;
+   public QuestData[] Quests;
 }

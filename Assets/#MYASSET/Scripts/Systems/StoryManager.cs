@@ -21,14 +21,14 @@ public class StoryManager : MonoBehaviour
     private int _FlagLeft = 0;
     private float _CurrentDistance = 0;
 
-    private bool isrunning = false;
+    private bool _IsRunning = false;
     // Start is called before the first frame update
     void Start()
     {
         var questlist = new List<QuestData>();
         for (int i = 0; i < _Stages.Length; i++)
         {
-            questlist.AddRange(_Stages[i].quests);
+            questlist.AddRange(_Stages[i].Quests);
         }
         _Quests = questlist.ToArray();
 
@@ -37,13 +37,13 @@ public class StoryManager : MonoBehaviour
     private void StartStory()
     {
         LoadQuest(0);
-        isrunning = true;
+        _IsRunning = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isrunning)
+        if (_IsRunning)
         {
             _CurrentDistance += Time.deltaTime * _ScrollSpeed;
             SpownEnemy();
@@ -53,7 +53,7 @@ public class StoryManager : MonoBehaviour
                 if (_CurrentQuest < _Quests.Length)
                     LoadQuest(_CurrentQuest);
                 else
-                    isrunning = false;
+                    _IsRunning = false;
             }
         }
         
