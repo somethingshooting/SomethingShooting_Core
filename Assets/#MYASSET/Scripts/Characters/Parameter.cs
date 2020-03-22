@@ -30,9 +30,12 @@ public class Parameter
     private void UpdateVaule()
     {
         var value = DefaultVaule;
-        foreach (var item in _CorrectionList.Value)
+        if (_CorrectionList.Value.Count > 0)
         {
-            value += item.Value;
+            foreach (var item in _CorrectionList.Value)
+            {
+                value += item.Value;
+            }
         }
     }
 
