@@ -4,9 +4,11 @@ using UnityEngine;
 
 public interface ICharacterState
 {
-    Parameter CurrentHP { get; }
+  /*  Parameter CurrentHP { get; }
 
-    Parameter MaxHP { get; }
+    Parameter MaxHP { get; }*/
+
+    ClampParameter HP { get; }
 
     Parameter Barrier { get; }
 
