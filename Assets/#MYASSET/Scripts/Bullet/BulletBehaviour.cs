@@ -10,7 +10,7 @@ public abstract class BulletBehaviour : MonoBehaviour, IBullet
 
     public SkillAttributeType AttributeType;
 
-    public void DestroyBullet()
+    public virtual void DestroyBullet()
     {
         Destroy(gameObject);
     }
