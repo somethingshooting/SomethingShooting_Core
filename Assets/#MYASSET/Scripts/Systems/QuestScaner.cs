@@ -12,22 +12,23 @@ public class QuestScaner : MonoBehaviour
     void Start()
     {
         var data = ScriptableObject.CreateInstance(typeof(QuestData)) as QuestData;
-        AssetDatabase.CreateAsset(data, "Assets/#MYASSET/Scripts/Systems/QuestData"+_Name+".asset");
+        AssetDatabase.CreateAsset(data, "Assets/#MYASSET/Scripts/Systems/QuestData/" + _Name+".asset");
         GameObject[] objects = SortWithZ(GameObject.FindGameObjectsWithTag("Enemy"));
         data.Enemies = new QuestData.EnemyData[objects.Length];
         int flagcount = 0;
         for (int i = 0; i < objects.Length; i++)
         {
-            QuestData.EnemyData enemy = data.Enemies[i];
-            enemy.Position = objects[i].transform.position;
-            enemy.Prefab = PrefabUtility.GetCorrespondingObjectFromSource(objects[i]);
+            //  QuestData.EnemyData enemy = data.Enemies[i];
+            data.Enemies[i] = new QuestData.EnemyData();
+            data.Enemies[i].Position = objects[i].transform.position;
+            data.Enemies[i].Prefab = PrefabUtility.GetCorrespondingObjectFromSource(objects[i]);
             if (objects[i].GetComponent<QuestFlagObject>() != null)
             {
-                enemy.Flag = true;
+                data.Enemies[i].Flag = true;
                 flagcount++;
             }
             else
-                enemy.Flag = false;
+                data.Enemies[i].Flag = false;
         }
             data.FlagCount = flagcount;
     }
@@ -48,8 +49,7 @@ public class QuestScaner : MonoBehaviour
             sortobjects[i] = min;
             subobjects.Remove(min);
         }
-
-
+        
         return sortobjects;
     }
 }
