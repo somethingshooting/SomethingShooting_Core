@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UniRx;
 
 [Serializable]
 public class Parameter
@@ -13,15 +12,14 @@ public class Parameter
     [SerializeField] private int _DefaultValue;
 
     /// <summary> 補正値のリスト </summary>
-    private ReactiveProperty<Dictionary<object, int>> _CorrectionList = new ReactiveProperty<Dictionary<object, int>>();
+    private Dictionary<object, int> _CorrectionList = new Dictionary<object, int>();
 
     // コンストラクタ
     public Parameter(int defaultVaule)
     {
         this._DefaultValue = defaultVaule;
 
-        _CorrectionList
-            .Subscribe(_ => UpdateVaule());
+        _CorrectionList = new Dictionary<object, int>();
     }
 
     public Parameter() : this(0) { }
@@ -30,9 +28,9 @@ public class Parameter
     private void UpdateVaule()
     {
         var value = DefaultVaule;
-        if (_CorrectionList.Value.Count > 0)
+        if (_CorrectionList.Count > 0)
         {
-            foreach (var item in _CorrectionList.Value)
+            foreach (var item in _CorrectionList)
             {
                 value += item.Value;
             }
@@ -46,7 +44,8 @@ public class Parameter
     /// <param name="value">加算する補正値</param>
     public void AddCorrection(object source, int value)
     {
-        _CorrectionList.Value.Add(source, value);
+        _CorrectionList.Add(source, value);
+        UpdateVaule();
     }
 
     /// <summary>
@@ -55,7 +54,8 @@ public class Parameter
     /// <param name="value">加算する補正値</param>
     public void AccCorrection(int value)
     {
-        _CorrectionList.Value.Add(null, value);
+        _CorrectionList.Add(null, value);
+        UpdateVaule();
     }
 
     /// <summary>
@@ -64,7 +64,8 @@ public class Parameter
     /// <param name="source">加算したクラス</param>
     public void RemoveCorrection(object source)
     {
-        _CorrectionList.Value.Remove(source);
+        _CorrectionList.Remove(source);
+        UpdateVaule();
     }
 
     /// <summary>
@@ -74,6 +75,6 @@ public class Parameter
     /// <returns>補正値</returns>
     public int CorrectionVaule(object source)
     {
-        return _CorrectionList.Value[source];
+        return _CorrectionList[source];
     }
 }
