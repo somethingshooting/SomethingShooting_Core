@@ -11,17 +11,17 @@ public abstract class EnemyBehaviour : MonoBehaviour, IHitPointObject
 
     public virtual void GetDamage(int value,SkillAttributeType attribute)
     {
-        state.HP.AddValue(-value);
-        if (state.HP.Value<=0)
+        _State.HP.AddValue(-value);
+        if (_State.HP.Value<=0)
         {
             _DeadSubject.OnNext(Unit.Default);
         }
     }
 
-    private EnemyState state;
+    private EnemyState _State;
     public void Start()
     {
-        state = GetComponent<EnemyState>();
+        _State = GetComponent<EnemyState>();
     }
 
 }
