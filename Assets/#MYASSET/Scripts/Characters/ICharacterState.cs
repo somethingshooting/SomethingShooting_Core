@@ -4,5 +4,11 @@ using UnityEngine;
 
 public interface ICharacterState
 {
+    Parameter CurrentHP { get; }
 
+    Parameter MaxHP { get; }
+
+    Parameter Barrier { get; }
+
+    Parameter ATK { get; }
 }
