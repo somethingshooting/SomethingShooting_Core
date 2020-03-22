@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour, ICharacterState
 {
-    public Parameter CurrentHP => _CurrentHP;
-    [SerializeField] private Parameter _CurrentHP = new Parameter(10);
-
-    public Parameter MaxHP => _MaxHP;
-    [SerializeField] private Parameter _MaxHP = new Parameter(10);
+    public ClampParameter HP => _HP;
+    [SerializeField] private ClampParameter _HP = new ClampParameter(10,0,10);
 
     public Parameter Barrier => _Barrier;
     [SerializeField] private Parameter _Barrier = new Parameter(0);
