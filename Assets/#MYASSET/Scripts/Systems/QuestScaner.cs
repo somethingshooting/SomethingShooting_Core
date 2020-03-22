@@ -15,16 +15,21 @@ public class QuestScaner : MonoBehaviour
         AssetDatabase.CreateAsset(data, "Assets/#MYASSET/Scripts/Systems/QuestData"+_Name+".asset");
         GameObject[] objects = SortWithZ(GameObject.FindGameObjectsWithTag("Enemy"));
         data.Enemies = new QuestData.EnemyData[objects.Length];
+        int flagcount = 0;
         for (int i = 0; i < objects.Length; i++)
         {
             QuestData.EnemyData enemy = data.Enemies[i];
             enemy.Position = objects[i].transform.position;
             enemy.Prefab = PrefabUtility.GetCorrespondingObjectFromSource(objects[i]);
             if (objects[i].GetComponent<QuestFlagObject>() != null)
-                enemy.Frag = true;
+            {
+                enemy.Flag = true;
+                flagcount++;
+            }
             else
-                enemy.Frag = false;
+                enemy.Flag = false;
         }
+            data.FlagCount = flagcount;
     }
     
     GameObject[] SortWithZ(GameObject[] objects)
