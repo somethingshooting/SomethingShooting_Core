@@ -6,7 +6,7 @@ using UniRx;
 
 public abstract class EnemyBehaviour : MonoBehaviour, IHitPointObject
 {
-    public IObservable<Unit> DeadSubject => _DeadSubject;
+    public IObservable<Unit> DeadSubject => _DeadSubject = new Subject<Unit>();
     protected Subject<Unit> _DeadSubject; 
 
     public virtual void GetDamage(int value,SkillAttributeType attribute)
