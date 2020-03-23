@@ -18,7 +18,7 @@ public abstract class EnemyBehaviour : MonoBehaviour, IHitPointObject
         }
     }
 
-    private EnemyState _State;
+    protected EnemyState _State;
     protected virtual void Start()
     {
         _State = GetComponent<EnemyState>();
