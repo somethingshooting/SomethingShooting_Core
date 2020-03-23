@@ -10,29 +10,53 @@ public class QuestScaner : MonoBehaviour
     private string _Name;
     // Start is called before the first frame update
     void Start()
-    {
+    {/*
         var data = ScriptableObject.CreateInstance(typeof(QuestData)) as QuestData;
-        AssetDatabase.CreateAsset(data, "Assets/#MYASSET/Scripts/Systems/QuestData"+_Name+".asset");
-        GameObject[] objects = SortWithZ(GameObject.FindGameObjectsWithTag("Enemy"));
+        AssetDatabase.CreateAsset(data, "Assets/#MYASSET/Scripts/Systems/QuestData/"+_Name+".asset");
+        GameObject[] objects = _SortWithZ(GameObject.FindGameObjectsWithTag("Enemy"));
         data.Enemies = new QuestData.EnemyData[objects.Length];
         int flagcount = 0;
         for (int i = 0; i < objects.Length; i++)
         {
-            QuestData.EnemyData enemy = data.Enemies[i];
-            enemy.Position = objects[i].transform.position;
-            enemy.Prefab = PrefabUtility.GetCorrespondingObjectFromSource(objects[i]);
+            data.Enemies[i] = new QuestData.EnemyData();
+            data.Enemies[i].Position = objects[i].transform.position;
+            data.Enemies[i].Prefab = PrefabUtility.GetCorrespondingObjectFromSource(objects[i]);
             if (objects[i].GetComponent<QuestFlagObject>() != null)
             {
-                enemy.Flag = true;
+                data.Enemies[i].Flag = true;
                 flagcount++;
             }
             else
-                enemy.Flag = false;
+                data.Enemies[i].Flag = false;
         }
-            data.FlagCount = flagcount;
+            data.FlagCount = flagcount;*/
+    }
+
+    [ContextMenu("ScanQuest")]
+    private void _Scan()
+    {
+        var data = ScriptableObject.CreateInstance(typeof(QuestData)) as QuestData;
+        AssetDatabase.CreateAsset(data, "Assets/#MYASSET/Scripts/Systems/QuestData/" + _Name + ".asset");
+        GameObject[] objects = _SortWithZ(GameObject.FindGameObjectsWithTag("Enemy"));
+        data.Enemies = new QuestData.EnemyData[objects.Length];
+        int flagcount = 0;
+        for (int i = 0; i < objects.Length; i++)
+        {
+            data.Enemies[i] = new QuestData.EnemyData();
+            data.Enemies[i].Position = objects[i].transform.position;
+            data.Enemies[i].Prefab = PrefabUtility.GetCorrespondingObjectFromSource(objects[i]);
+            if (objects[i].GetComponent<QuestFlagObject>() != null)
+            {
+                data.Enemies[i].Flag = true;
+                flagcount++;
+            }
+            else
+                data.Enemies[i].Flag = false;
+        }
+        data.FlagCount = flagcount;
     }
     
-    GameObject[] SortWithZ(GameObject[] objects)
+    private GameObject[] _SortWithZ(GameObject[] objects)
     {
         GameObject[] sortobjects = new GameObject[objects.Length];
         List<GameObject> subobjects = new List<GameObject>();

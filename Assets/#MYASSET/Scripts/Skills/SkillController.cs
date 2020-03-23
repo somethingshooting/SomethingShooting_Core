@@ -7,11 +7,11 @@ public class SkillController : MonoBehaviour
 {
     private IInputProvider InputProvider;
 
-    public ActiveSkill NormalShotSkill { get; set; }
+    public ActiveSkill NormalShotSkill;
 
-    public List<ActiveSkill> ActiveSkills { get;  set; }
+    public List<ActiveSkill> ActiveSkills;
 
-    public List<PassiveSkill> PassiveSkills { get; set; }
+    public List<PassiveSkill> PassiveSkills;
 
     void Start()
     {
