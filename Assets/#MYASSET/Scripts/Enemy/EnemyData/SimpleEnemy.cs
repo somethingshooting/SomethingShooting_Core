@@ -6,6 +6,11 @@ public class SimpleEnemy : EnemyBehaviour
 {
     [SerializeField] private GameObject _Bullet = null;
 
+    protected override void Init()
+    {
+
+    }
+
     void Update()
     {
         
