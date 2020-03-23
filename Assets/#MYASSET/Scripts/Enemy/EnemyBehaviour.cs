@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
+[RequireComponent(typeof( EnemyState))]
 public abstract class EnemyBehaviour : MonoBehaviour, IHitPointObject
 {
     public IObservable<Unit> DeadSubject => _DeadSubject;
@@ -18,7 +19,7 @@ public abstract class EnemyBehaviour : MonoBehaviour, IHitPointObject
         }
     }
 
-    protected EnemyState _State;
+    [SerializeField] protected EnemyState _State;
     protected virtual void Start()
     {
         _State = GetComponent<EnemyState>();
