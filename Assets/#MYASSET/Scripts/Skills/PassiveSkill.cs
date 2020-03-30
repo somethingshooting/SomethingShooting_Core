@@ -4,7 +4,7 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
-public abstract class PassiveSkill : MonoBehaviour, ISkill
+public abstract class PassiveSkill : ScriptableObject, IPassiveSkill
 {
     public abstract string SkillName { get; }
     public abstract SkillAttributeType AttributeType { get; }
@@ -14,24 +14,16 @@ public abstract class PassiveSkill : MonoBehaviour, ISkill
 
     protected abstract void Init();
 
-    public void PlaySkill()
-    {
-        _IsRunning.Value = true;
-        SkillStart();
-    }
-
-    protected virtual void SkillStart()
-    {
-
-    }
-
     protected abstract void SkillUpdate();
 
-    protected virtual void Start()
+    public virtual void SkillInit()
     {
-        this.UpdateAsObservable()
-            .Subscribe(_ => SkillUpdate());
-
+        _IsRunning.Value = true;
         Init();
+    }
+
+    public virtual void SkillPlayUpdate()
+    {
+        SkillUpdate();
     }
 }

@@ -11,5 +11,5 @@ public interface ISkill
 
     IReadOnlyReactiveProperty<bool> IsRunning { get; }
 
-    void PlaySkill();
+    void SkillInit();
 }
