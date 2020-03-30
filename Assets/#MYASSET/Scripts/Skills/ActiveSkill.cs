@@ -4,7 +4,7 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 
-public abstract class ActiveSkill : MonoBehaviour, ISkill
+public abstract class ActiveSkill : ScriptableObject, IActiveSkill
 {
     public abstract string SkillName { get; }
     public abstract SkillAttributeType AttributeType { get; }
@@ -33,12 +33,6 @@ public abstract class ActiveSkill : MonoBehaviour, ISkill
     /// </summary>
     protected abstract void Init();
 
-    public void PlaySkill()
-    {
-        _IsRunning.Value = true;
-        SkillStart();
-    }
-
     /// <summary>
     /// スキル実行開始時に一度だけ呼ばれる
     /// </summary>
@@ -52,12 +46,9 @@ public abstract class ActiveSkill : MonoBehaviour, ISkill
     /// <summary>
     /// スキル実行終了時に一度だけ呼ばれる
     /// </summary>
-    protected virtual void SkillEnd()
-    {
+    protected virtual void SkillEnd() { }
 
-    }
-
-    protected virtual void Start()
+    public virtual void SkillInit()
     {
         // IsRunning == ture になった時に実行される処理
         IsRunning
@@ -68,36 +59,6 @@ public abstract class ActiveSkill : MonoBehaviour, ISkill
                 SkillTimeCount = SkillTime;
             });
 
-        // RecastTimeCount > 0 の時に実行される処理
-        this.UpdateAsObservable()
-            .Where(_ => RecastTimeCount > 0)
-            .Subscribe(_ =>
-            {
-                RecastTimeCount -= Time.deltaTime * RecastTimeCorrection.Value;
-                if (RecastTimeCount < 0)
-                {
-                    RecastTimeCount = 0;
-                }
-            });
-
-        // IsRunning == ture の時に実行される処理
-        this.UpdateAsObservable()
-            .Where(_ => IsRunning.Value)
-            .Subscribe(_ => SkillUpdate());
-
-        // SkillTimeCOunt > 0 の時に実行される処理
-        this.UpdateAsObservable()
-            .Where(_ => SkillTimeCount > 0)
-            .Subscribe(_ =>
-            {
-                SkillTimeCount -= Time.deltaTime;
-                if (SkillTimeCount < 0)
-                {
-                    SkillEnd();
-                    _IsRunning.Value = false;
-                }
-            });
-
         // IsRunning == false になったときに実行される処理
         IsRunning
             .SkipLatestValueOnSubscribe()
@@ -105,5 +66,32 @@ public abstract class ActiveSkill : MonoBehaviour, ISkill
             .Subscribe(_ => SkillEnd());
 
         Init();
+    }
+
+    public virtual void SkillPlayStart()
+    {
+        _IsRunning.Value = true;
+        SkillStart();
+    }
+
+    public virtual void SkillPlayUpdate()
+    {
+        // RecastTimeCount > 0 の時に実行される処理
+        if (RecastTimeCount > 0)
+        {
+            RecastTimeCount -= Time.deltaTime * RecastTimeCorrection.Value;
+            if (RecastTimeCount < 0)
+            {
+                RecastTimeCount = 0;
+                SkillEnd();
+                _IsRunning.Value = false;
+            }
+        }
+
+        // IsRunning == ture の時に実行される処理
+        if (IsRunning.Value)
+        {
+            SkillUpdate();
+        }
     }
 }

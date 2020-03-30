@@ -7,11 +7,11 @@ public class SkillController : MonoBehaviour
 {
     private IInputProvider InputProvider;
 
-    public ActiveSkill NormalShotSkill;
+    public IActiveSkill NormalShotSkill;
 
-    public List<ActiveSkill> ActiveSkills;
+    public List<IActiveSkill> ActiveSkills;
 
-    public List<PassiveSkill> PassiveSkills;
+    public List<IPassiveSkill> PassiveSkills;
 
     void Start()
     {
@@ -25,7 +25,34 @@ public class SkillController : MonoBehaviour
             .Where(_ => _)
             .Subscribe(_ => PlayAstiveSkill(0));
 
+        SkillBehaviourStart();
+
         PlayPassiveSills();
+    }
+
+    private void Update()
+    {
+        // 取得済みスキルのUpdateを実行
+        if (NormalShotSkill.IsRunning.Value)
+        {
+            NormalShotSkill.SkillPlayUpdate();
+        }
+
+        foreach (var skill in ActiveSkills)
+        {
+            if (skill.IsRunning.Value)
+            {
+                skill.SkillPlayUpdate();
+            }
+        }
+
+        foreach (var skill in PassiveSkills)
+        {
+            if (skill.IsRunning.Value)
+            {
+                skill.SkillPlayUpdate();
+            }
+        }
     }
 
     private void PlayAstiveSkill(int num)
@@ -44,9 +71,9 @@ public class SkillController : MonoBehaviour
         if (playable)
         {
             if (num == -1)
-                NormalShotSkill.PlaySkill();
+                NormalShotSkill.SkillPlayStart();
             else
-                ActiveSkills[num].PlaySkill();
+                ActiveSkills[num].SkillPlayStart();
         }
 
     }
@@ -57,7 +84,25 @@ public class SkillController : MonoBehaviour
         {
             if (!passiveSkill.IsRunning.Value)
             {
-                passiveSkill.PlaySkill();
+                passiveSkill.SkillInit();
+            }
+        }
+    }
+
+    private void SkillBehaviourStart()
+    {
+        NormalShotSkill.SkillInit();
+
+        foreach (var skill in ActiveSkills)
+        {
+                skill.SkillInit();
+        }
+
+        foreach (var skill in PassiveSkills)
+        {
+            if (!skill.IsRunning.Value)
+            {
+                skill.SkillInit();
             }
         }
     }
