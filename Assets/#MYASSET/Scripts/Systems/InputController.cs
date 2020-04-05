@@ -4,7 +4,7 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
-public class InputController : MonoBehaviour, IInputProvider
+public class InputController : ManagerBase<InputController>, IInputProvider
 {
     public IReadOnlyReactiveProperty<Vector3> PlayerMoveDirection => _PlayerMoveDirection;
     private ReactiveProperty<Vector3> _PlayerMoveDirection = new ReactiveProperty<Vector3>();
@@ -18,11 +18,9 @@ public class InputController : MonoBehaviour, IInputProvider
     void Start()
     {
         this.UpdateAsObservable()
-            .Subscribe(_ => SetPlayerMoveDirection());
-
-        this.UpdateAsObservable()
             .Subscribe(_ =>
             {
+                SetPlayerMoveDirection();
                 SetSkill1Button();
                 SetNormalShotButton();
             });
