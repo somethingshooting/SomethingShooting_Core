@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Parameter
+public class Parameter<T> where T : IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable, new()
 {
-    public int Value => _Value;
-    [SerializeField] private int _Value;
+    public T Value => _Value;
+    [SerializeField] private T _Value;
 
-    public int DefaultVaule => _DefaultValue;
-    [SerializeField] private int _DefaultValue;
+    public T DefaultVaule => _DefaultValue;
+    [SerializeField] private T _DefaultValue;
 
     /// <summary> 補正値のリスト </summary>
-    private Dictionary<object, int> _CorrectionList = new Dictionary<object, int>();
+    private Dictionary<object, T> _CorrectionList = new Dictionary<object, T>();
 
     // コンストラクタ
-    public Parameter(int defaultVaule)
+    public Parameter(T defaultVaule)
     {
         this._DefaultValue = defaultVaule;
 
-        _CorrectionList = new Dictionary<object, int>();
+        _CorrectionList = new Dictionary<object, T>();
     }
 
-    public Parameter() : this(0) { }
+    public Parameter() : this(new T()) { }
 
     /// <summary> Vauleを更新する </summary>
     private void UpdateVaule()
@@ -30,9 +30,9 @@ public class Parameter
         var value = DefaultVaule;
         if (_CorrectionList.Count > 0)
         {
-            foreach (var item in _CorrectionList)
+            foreach (var item in _CorrectionList.Values)
             {
-                value += item.Value;
+                value += (dynamic)item;
             }
         }
     }
@@ -42,7 +42,7 @@ public class Parameter
     /// </summary>
     /// <param name="source">この関数を呼び出しているクラス</param>
     /// <param name="value">加算する補正値</param>
-    public void AddCorrection(object source, int value)
+    public void AddCorrection(object source, T value)
     {
         _CorrectionList.Add(source, value);
         UpdateVaule();
@@ -52,7 +52,7 @@ public class Parameter
     /// (非推奨) 補正値を加算する
     /// </summary>
     /// <param name="value">加算する補正値</param>
-    public void AccCorrection(int value)
+    public void AccCorrection(T value)
     {
         _CorrectionList.Add(null, value);
         UpdateVaule();
@@ -73,8 +73,14 @@ public class Parameter
     /// </summary>
     /// <param name="source">検索するキー</param>
     /// <returns>補正値</returns>
-    public int CorrectionVaule(object source)
+    public T CorrectionVaule(object source)
     {
         return _CorrectionList[source];
+    }
+
+    public static Parameter<T> operator+ (Parameter<T> x, Parameter<T>y)
+    {
+        int a = 0;
+        return new Parameter<T>();
     }
 }
