@@ -4,9 +4,9 @@ using UnityEngine;
 
 public abstract class BulletBehaviour : MonoBehaviour, IBullet
 {
-    public Parameter MoveSpeed = new Parameter(1);
+    public float MoveSpeed = 1.0f;
 
-    public Parameter ATK = new Parameter(1);
+    public int ATK = 1;
 
     public SkillAttributeType AttributeType;
 
@@ -20,7 +20,7 @@ public abstract class BulletBehaviour : MonoBehaviour, IBullet
         if ((gameObject.tag == "PlayerBullet" && other.tag == "Enemy") || (gameObject.tag == "EnemyBullet" && other.tag == "Player"))
         {
             other.GetComponent<IHitPointObject>()
-                        .GetDamage(ATK.Value, AttributeType);
+                        .GetDamage(ATK, AttributeType);
         }
     }
 }
