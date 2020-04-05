@@ -4,7 +4,7 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 
-public abstract class ActiveSkill : ScriptableObject, IActiveSkill
+public abstract class ActiveSkill : MonoBehaviour, IActiveSkill
 {
     public abstract string SkillName { get; }
     public abstract SkillAttributeType AttributeType { get; }
@@ -28,6 +28,26 @@ public abstract class ActiveSkill : ScriptableObject, IActiveSkill
 
     protected float SkillTimeCount = 0;
 
+    public virtual void Start()
+    {
+        // IsRunning == ture になった時に実行される処理
+        IsRunning
+            .Where(_ => _)
+            .Subscribe(_ =>
+            {
+                RecastTimeCount = RecastTime;
+                SkillTimeCount = SkillTime;
+            });
+
+        // IsRunning == false になったときに実行される処理
+        IsRunning
+            .SkipLatestValueOnSubscribe()
+            .Where(_ => !_)
+            .Subscribe(_ => SkillEnd());
+
+        Init();
+    }
+
     /// <summary>
     /// シーン開始時に一度だけ呼ばれる
     /// </summary>
@@ -47,26 +67,6 @@ public abstract class ActiveSkill : ScriptableObject, IActiveSkill
     /// スキル実行終了時に一度だけ呼ばれる
     /// </summary>
     protected virtual void SkillEnd() { }
-
-    public virtual void SkillInit()
-    {
-        // IsRunning == ture になった時に実行される処理
-        IsRunning
-            .Where(_ => _)
-            .Subscribe(_ =>
-            {
-                RecastTimeCount = RecastTime;
-                SkillTimeCount = SkillTime;
-            });
-
-        // IsRunning == false になったときに実行される処理
-        IsRunning
-            .SkipLatestValueOnSubscribe()
-            .Where(_ => !_)
-            .Subscribe(_ => SkillEnd());
-
-        Init();
-    }
 
     public virtual void SkillPlayStart()
     {
