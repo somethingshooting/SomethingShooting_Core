@@ -20,7 +20,7 @@ public abstract class BulletBehaviour : MonoBehaviour, IBullet
         if ((gameObject.tag == "PlayerBullet" && other.tag == "Enemy") || (gameObject.tag == "EnemyBullet" && other.tag == "Player"))
         {
             other.GetComponent<IHitPointObject>()
-                        .GetDamage(ATK.Value, AttributeType);
+                        .GetDamage(ATK, AttributeType);
         }
     }
 }
