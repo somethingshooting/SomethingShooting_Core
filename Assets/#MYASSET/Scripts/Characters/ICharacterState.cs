@@ -10,7 +10,7 @@ public interface ICharacterState
 
     ClampParameter HP { get; }
 
-    Parameter Barrier { get; }
+    Parameter<int> Barrier { get; }
 
-    Parameter ATK { get; }
+    Parameter<int> ATK { get; }
 }

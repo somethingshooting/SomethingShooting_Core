@@ -19,7 +19,7 @@ public abstract class ActiveSkill : MonoBehaviour, ISkill
     /// <summary>
     /// スキルのリキャストタイマーの補正値
     /// </summary>
-    public Parameter RecastTimeCorrection = new Parameter(1);
+    public Parameter<int> RecastTimeCorrection = new Parameter<int>(1);
 
     /// <summary>
     /// スキルの全体硬直時間

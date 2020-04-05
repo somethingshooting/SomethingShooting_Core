@@ -7,15 +7,15 @@ public class PlayerState : MonoBehaviour, ICharacterState
     public ClampParameter HP => _HP;
     [SerializeField] private ClampParameter _HP = new ClampParameter(10,0,10);
 
-    public Parameter Barrier => _Barrier;
-    [SerializeField] private Parameter _Barrier = new Parameter(0);
+    public Parameter<int> Barrier => _Barrier;
+    [SerializeField] private Parameter<int> _Barrier = new Parameter<int>(0);
 
-    public Parameter ATK => _ATK;
-    [SerializeField] private Parameter _ATK = new Parameter(1);
+    public Parameter<int> ATK => _ATK;
+    [SerializeField] private Parameter<int> _ATK = new Parameter<int>(1);
 
-    public Parameter CoolTime => _CoolTime;
-    [SerializeField] private Parameter _CoolTime = new Parameter(1);
+    public Parameter<int> CoolTime => _CoolTime;
+    [SerializeField] private Parameter<int> _CoolTime = new Parameter<int>(1);
 
-    public Parameter HitInvincibleTime => _HitInvincibleTime;
-    [SerializeField] private Parameter _HitInvincibleTime = new Parameter(0);
+    public Parameter<int> HitInvincibleTime => _HitInvincibleTime;
+    [SerializeField] private Parameter<int> _HitInvincibleTime = new Parameter<int>(0);
 }

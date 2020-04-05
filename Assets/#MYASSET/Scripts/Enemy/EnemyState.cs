@@ -7,9 +7,9 @@ public class EnemyState : MonoBehaviour, ICharacterState
     public ClampParameter HP => _HP;
     [SerializeField] private ClampParameter _HP = new ClampParameter(10,0,10);
 
-    public Parameter Barrier => _Barrier;
-    [SerializeField] private Parameter _Barrier = new Parameter(0);
+    public Parameter<int> Barrier => _Barrier;
+    [SerializeField] private Parameter<int> _Barrier = new Parameter<int>(0);
 
-    public Parameter ATK => _ATK;
-    [SerializeField] private Parameter _ATK = new Parameter(1);
+    public Parameter<int> ATK => _ATK;
+    [SerializeField] private Parameter<int> _ATK = new Parameter<int>(1);
 }
