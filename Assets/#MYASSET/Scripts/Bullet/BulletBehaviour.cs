@@ -4,9 +4,9 @@ using UnityEngine;
 
 public abstract class BulletBehaviour : MonoBehaviour, IBullet
 {
-    public Parameter<float> MoveSpeed = new Parameter<float>(1);
+    public float MoveSpeed = 1.0f;
 
-    public Parameter<int> ATK = new Parameter<int>(1);
+    public int ATK = 1;
 
     public SkillAttributeType AttributeType;
 
