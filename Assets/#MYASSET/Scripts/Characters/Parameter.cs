@@ -77,10 +77,4 @@ public class Parameter<T> where T : IComparable, IComparable<T>, IConvertible, I
     {
         return _CorrectionList[source];
     }
-
-    public static Parameter<T> operator+ (Parameter<T> x, Parameter<T>y)
-    {
-        int a = 0;
-        return new Parameter<T>();
-    }
 }
