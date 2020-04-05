@@ -1,0 +1,21 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerState : MonoBehaviour, ICharacterState
+{
+    public ClampParameter HP => _HP;
+    [SerializeField] private ClampParameter _HP = new ClampParameter(10,0,10);
+
+    public Parameter Barrier => _Barrier;
+    [SerializeField] private Parameter _Barrier = new Parameter(0);
+
+    public Parameter ATK => _ATK;
+    [SerializeField] private Parameter _ATK = new Parameter(1);
+
+    public Parameter CoolTime => _CoolTime;
+    [SerializeField] private Parameter _CoolTime = new Parameter(1);
+
+    public Parameter HitInvincibleTime => _HitInvincibleTime;
+    [SerializeField] private Parameter _HitInvincibleTime = new Parameter(0);
+}

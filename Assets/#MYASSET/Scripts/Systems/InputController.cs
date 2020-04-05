@@ -18,7 +18,6 @@ public class InputController : MonoBehaviour, IInputProvider
     void Start()
     {
         this.UpdateAsObservable()
-            .Where(_ => Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
             .Subscribe(_ => SetPlayerMoveDirection());
 
         this.UpdateAsObservable()
