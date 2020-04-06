@@ -4,7 +4,7 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
-public class InputController : ManagerBase<InputController>, IInputProvider
+public class InputController : ManagerBase<InputController>
 {
     public IReadOnlyReactiveProperty<Vector3> PlayerMoveDirection => _PlayerMoveDirection;
     private ReactiveProperty<Vector3> _PlayerMoveDirection = new ReactiveProperty<Vector3>();

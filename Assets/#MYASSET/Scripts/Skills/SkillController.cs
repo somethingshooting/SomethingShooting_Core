@@ -5,7 +5,7 @@ using UniRx;
 
 public class SkillController : MonoBehaviour
 {
-    private IInputProvider InputProvider;
+    private InputController InputController;
 
     public IActiveSkill NormalShotSkill;
 
@@ -15,13 +15,13 @@ public class SkillController : MonoBehaviour
 
     void Start()
     {
-        InputProvider = GameObject.FindGameObjectWithTag("GameManager").GetComponent<IInputProvider>();
+        InputController = InputController.Instance;
 
-        InputProvider.NormalShotButtonPushed
+        InputController.NormalShotButtonPushed
             .Where(_ => _)
             .Subscribe(_ => PlayAstiveSkill(-1));
 
-        InputProvider.Skill1ButtonPushed
+        InputController.Skill1ButtonPushed
             .Where(_ => _)
             .Subscribe(_ => PlayAstiveSkill(0));
 
