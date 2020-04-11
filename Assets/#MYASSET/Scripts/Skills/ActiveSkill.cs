@@ -60,7 +60,7 @@ public abstract class ActiveSkill : MonoBehaviour, IActiveSkill
             {
                 if (RecastTimeCount > 0)
                 {
-                    RecastTimeCount -= Time.deltaTime * RecastTimeCorrection.Value;
+                    RecastTimeCount -= Time.deltaTime;
                     if (RecastTimeCount < 0)
                     {
                         RecastTimeCount = 0;
@@ -93,7 +93,7 @@ public abstract class ActiveSkill : MonoBehaviour, IActiveSkill
     {
         if (RecastTimeCount > 0)
         {
-            Debug.Log("スキルがリキャスト中です");
+            Debug.Log("スキルがリキャスト中です 残り時間 : "+ RecastTimeCount);
             return;
         }
         SkillStart();
