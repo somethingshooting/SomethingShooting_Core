@@ -7,4 +7,6 @@ public interface IActiveSkill : ISkill
     void SkillPlayStart();
 
     void SkillPlayUpdate();
+
+    bool PlayableSkill();
 }

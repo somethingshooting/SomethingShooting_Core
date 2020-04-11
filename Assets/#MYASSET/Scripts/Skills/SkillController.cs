@@ -61,9 +61,9 @@ public class SkillController : MonoBehaviour
 
         if (playable)
         {
-            if (num == -1)
+            if (num == -1 && NormalShotSkill.PlayableSkill())
                 NormalShotSkill.SkillPlayStart();
-            else
+            else if (ActiveSkills[num].PlayableSkill())
                 ActiveSkills[num].SkillPlayStart();
         }
 
