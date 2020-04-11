@@ -16,7 +16,7 @@ public abstract class ActiveSkill : MonoBehaviour, IActiveSkill
     protected BoolReactiveProperty _IsRunning = new BoolReactiveProperty(false);
 
     /// <summary> スキルのリキャスト時間 </summary>
-    public float RecastTime = 0;
+    public float RecastTime = 3;
     public float RecastTimeCount { get; protected set; } = 0;
 
     /// <summary>
@@ -27,7 +27,7 @@ public abstract class ActiveSkill : MonoBehaviour, IActiveSkill
     /// <summary>
     /// スキルの全体硬直時間
     /// </summary>
-    [SerializeField] protected float SkillTime = 10;
+    [SerializeField] protected float SkillTime = 2;
 
     protected float SkillTimeCount = 0;
 
@@ -48,7 +48,25 @@ public abstract class ActiveSkill : MonoBehaviour, IActiveSkill
             .Where(_ => !_)
             .Subscribe(_ => SkillEnd());
 
+        this.UpdateAsObservable()
+            .Where(_ => IsRunning.Value)
+            .Subscribe(_ => SkillPlayUpdate());
+
+
         Init();
+
+        this.UpdateAsObservable()
+            .Subscribe(_ =>
+            {
+                if (RecastTimeCount > 0)
+                {
+                    RecastTimeCount -= Time.deltaTime * RecastTimeCorrection.Value;
+                    if (RecastTimeCount < 0)
+                    {
+                        RecastTimeCount = 0;
+                    }
+                }
+            });
     }
 
     /// <summary>
@@ -73,19 +91,24 @@ public abstract class ActiveSkill : MonoBehaviour, IActiveSkill
 
     public virtual void SkillPlayStart()
     {
-        _IsRunning.Value = true;
+        if (RecastTimeCount > 0)
+        {
+            Debug.Log("スキルがリキャスト中です");
+            return;
+        }
         SkillStart();
+        _IsRunning.Value = true;
     }
 
     public virtual void SkillPlayUpdate()
     {
         // RecastTimeCount > 0 の時に実行される処理
-        if (RecastTimeCount > 0)
+        if (SkillTimeCount >= 0)
         {
-            RecastTimeCount -= Time.deltaTime * RecastTimeCorrection.Value;
-            if (RecastTimeCount < 0)
+            SkillTimeCount -= Time.deltaTime;
+            if (SkillTimeCount < 0)
             {
-                RecastTimeCount = 0;
+                SkillTimeCount = 0;
                 SkillEnd();
                 _IsRunning.Value = false;
             }

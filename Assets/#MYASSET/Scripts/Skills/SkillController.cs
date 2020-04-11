@@ -31,31 +31,6 @@ public class SkillController : MonoBehaviour
         PlayPassiveSills();
     }
 
-    private void Update()
-    {
-        // 取得済みスキルのUpdateを実行
-        if (NormalShotSkill.IsRunning.Value)
-        {
-            NormalShotSkill.SkillPlayUpdate();
-        }
-
-        foreach (var skill in ActiveSkills)
-        {
-            if (skill.IsRunning.Value)
-            {
-                skill.SkillPlayUpdate();
-            }
-        }
-
-        foreach (var skill in PassiveSkills)
-        {
-            if (skill.IsRunning.Value)
-            {
-                skill.SkillPlayUpdate();
-            }
-        }
-    }
-
     public void SetNormalSkill(IActiveSkill skill)
     {
         NormalShotSkill = skill;
