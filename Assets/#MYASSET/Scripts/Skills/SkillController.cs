@@ -25,8 +25,6 @@ public class SkillController : MonoBehaviour
             .Where(_ => _)
             .Subscribe(_ => PlayAstiveSkill(0));
 
-        SkillBehaviourStart();
-
         PlayPassiveSills();
     }
 
@@ -84,25 +82,7 @@ public class SkillController : MonoBehaviour
         {
             if (!passiveSkill.IsRunning.Value)
             {
-                passiveSkill.SkillInit();
-            }
-        }
-    }
-
-    private void SkillBehaviourStart()
-    {
-        NormalShotSkill.SkillInit();
-
-        foreach (var skill in ActiveSkills)
-        {
-                skill.SkillInit();
-        }
-
-        foreach (var skill in PassiveSkills)
-        {
-            if (!skill.IsRunning.Value)
-            {
-                skill.SkillInit();
+                passiveSkill.Start();
             }
         }
     }
