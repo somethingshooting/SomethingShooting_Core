@@ -6,8 +6,11 @@ using UniRx.Triggers;
 
 public abstract class ActiveSkill : MonoBehaviour, IActiveSkill
 {
-    public string SkillName { get; }
-    public SkillAttributeType AttributeType { get; }
+    public string SkillName => _SkillName;
+    [SerializeField] protected string _SkillName;
+
+    public SkillAttributeType AttributeType => _AttributeType;
+    [SerializeField] protected SkillAttributeType _AttributeType = SkillAttributeType.None;
 
     public IReadOnlyReactiveProperty<bool> IsRunning => _IsRunning;
     protected BoolReactiveProperty _IsRunning = new BoolReactiveProperty(false);
