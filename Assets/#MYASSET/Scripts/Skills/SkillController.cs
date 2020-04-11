@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 using UniRx;
 
@@ -7,13 +8,15 @@ public class SkillController : MonoBehaviour
 {
     private InputController InputController;
 
-    public IActiveSkill NormalShotSkill;
+    public IActiveSkill NormalShotSkill { get; protected set; }
 
-    public List<IActiveSkill> ActiveSkills;
+    public IReadOnlyList<IActiveSkill> ActiveSkills => _ActiveSkills;
+    private List<IActiveSkill> _ActiveSkills = new List<IActiveSkill>();
 
-    public List<IPassiveSkill> PassiveSkills;
+    public IReadOnlyList<IPassiveSkill> PassiveSkills => _PassiveSkills;
+    private List<IPassiveSkill> _PassiveSkills = new List<IPassiveSkill>();
 
-    void Start()
+    private void Start()
     {
         InputController = InputController.Instance;
 
@@ -51,6 +54,21 @@ public class SkillController : MonoBehaviour
                 skill.SkillPlayUpdate();
             }
         }
+    }
+
+    public void SetNormalSkill(IActiveSkill skill)
+    {
+        NormalShotSkill = skill;
+    }
+
+    public void SetSkill(IActiveSkill skill)
+    {
+        _ActiveSkills.Add(skill);
+    }
+
+    public void SetSkill(IPassiveSkill skill)
+    {
+        _PassiveSkills.Add(skill);
     }
 
     private void PlayAstiveSkill(int num)
