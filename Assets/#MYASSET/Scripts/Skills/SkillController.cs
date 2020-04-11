@@ -11,10 +11,10 @@ public class SkillController : MonoBehaviour
     public IActiveSkill NormalShotSkill { get; protected set; }
 
     public IReadOnlyList<IActiveSkill> ActiveSkills => _ActiveSkills;
-    private List<IActiveSkill> _ActiveSkills;
+    private List<IActiveSkill> _ActiveSkills = new List<IActiveSkill>();
 
     public IReadOnlyList<IPassiveSkill> PassiveSkills => _PassiveSkills;
-    private List<IPassiveSkill> _PassiveSkills;
+    private List<IPassiveSkill> _PassiveSkills = new List<IPassiveSkill>();
 
     private void Start()
     {
@@ -54,6 +54,11 @@ public class SkillController : MonoBehaviour
                 skill.SkillPlayUpdate();
             }
         }
+    }
+
+    public void SetNormalSkill(IActiveSkill skill)
+    {
+        NormalShotSkill = skill;
     }
 
     public void SetSkill(IActiveSkill skill)
