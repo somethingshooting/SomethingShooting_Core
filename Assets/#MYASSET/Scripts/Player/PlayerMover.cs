@@ -7,11 +7,11 @@ public class PlayerMover : MonoBehaviour
     public Vector2 screen = new Vector2(5, 5);
     public float speed = 2;
 
-    private IInputProvider input;
+    private InputController input;
     // Start is called before the first frame update
     void Start()
     {
-        input = GameObject.FindGameObjectWithTag("GameManager").GetComponent<IInputProvider>();
+        input = InputController.Instance;
     }
 
     // Update is called once per frame
