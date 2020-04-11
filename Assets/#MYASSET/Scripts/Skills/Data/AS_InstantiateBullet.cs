@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AS_Instance : ActiveSkill
+public class AS_InstantiateBullet : ActiveSkill
 {
     [SerializeField] private GameObject _Bullet;
 
@@ -13,7 +13,8 @@ public class AS_Instance : ActiveSkill
 
     protected override void SkillStart()
     {
-        Instantiate(_Bullet);
+       var obj =  Instantiate(_Bullet);
+        obj.transform.position = transform.position;
     }
 
     protected override void SkillUpdate()
