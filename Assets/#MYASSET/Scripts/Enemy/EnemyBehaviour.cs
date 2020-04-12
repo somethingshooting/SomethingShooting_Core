@@ -8,7 +8,9 @@ using UniRx;
 public abstract class EnemyBehaviour : MonoBehaviour, IHitPointObject
 {
     public IObservable<Unit> DeadSubject => _DeadSubject = new Subject<Unit>();
-    protected Subject<Unit> _DeadSubject; 
+    protected Subject<Unit> _DeadSubject;
+
+    public EnemyState _State { get; protected set; } = null;
 
     public virtual void GetDamage(int value,SkillAttributeType attribute)
     {
@@ -19,7 +21,6 @@ public abstract class EnemyBehaviour : MonoBehaviour, IHitPointObject
         }
     }
 
-    [SerializeField] protected EnemyState _State;
     protected virtual void Start()
     {
         _State = GetComponent<EnemyState>();
