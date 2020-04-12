@@ -6,8 +6,6 @@ using UniRx;
 
 public class SkillController : MonoBehaviour
 {
-    private InputController InputController;
-
     public IActiveSkill NormalShotSkill { get; protected set; }
 
     public IReadOnlyList<IActiveSkill> ActiveSkills => _ActiveSkills;
@@ -18,16 +16,6 @@ public class SkillController : MonoBehaviour
 
     private void Start()
     {
-        InputController = InputController.Instance;
-
-        InputController.NormalShotButtonPushed
-            .Where(_ => _)
-            .Subscribe(_ => PlayAstiveSkill(-1));
-
-        InputController.Skill1ButtonPushed
-            .Where(_ => _)
-            .Subscribe(_ => PlayAstiveSkill(0));
-
         PlayPassiveSills();
     }
 
@@ -46,7 +34,11 @@ public class SkillController : MonoBehaviour
         _PassiveSkills.Add(skill);
     }
 
-    private void PlayAstiveSkill(int num)
+    /// <summary>
+    /// アクティブスキルを実行する
+    /// </summary>
+    /// <param name="num">-1 : NormalShotSkill, 0～ : ActiveSkillsの要素番号</param>
+    public void PlayAstiveSkill(int num)
     {
         var playable = true;
 
