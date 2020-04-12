@@ -8,11 +8,11 @@ public class En_Boss_First : EnemyBehaviour
 
     [SerializeField] private float _MoveSpeed = 1.0f;
 
-    [SerializeField] private int _Phase = 0;
+    [SerializeField] private int _Phase = -2;
 
     protected override void Init()
     {
-        throw new System.NotImplementedException();
+
     }
 
     protected void Update()
@@ -27,5 +27,10 @@ public class En_Boss_First : EnemyBehaviour
         {
             Gizmos.DrawSphere(pos, 0.1f);
         }
+    }
+
+    private void PlaySkillBurst()
+    {
+
     }
 }
