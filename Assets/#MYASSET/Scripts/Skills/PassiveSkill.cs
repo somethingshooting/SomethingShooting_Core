@@ -4,10 +4,13 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
-public abstract class PassiveSkill : ScriptableObject, IPassiveSkill
+public abstract class PassiveSkill : MonoBehaviour, IPassiveSkill
 {
-    public abstract string SkillName { get; }
-    public abstract SkillAttributeType AttributeType { get; }
+    public string SkillName => _SkillName;
+    [SerializeField] protected string _SkillName;
+
+    public SkillAttributeType AttributeType => _AttributeType;
+    [SerializeField] protected SkillAttributeType _AttributeType = SkillAttributeType.None;
 
     public IReadOnlyReactiveProperty<bool> IsRunning => _IsRunning;
     protected BoolReactiveProperty _IsRunning = new BoolReactiveProperty(false);
@@ -16,7 +19,7 @@ public abstract class PassiveSkill : ScriptableObject, IPassiveSkill
 
     protected abstract void SkillUpdate();
 
-    public virtual void SkillInit()
+    public virtual void Start()
     {
         _IsRunning.Value = true;
         Init();

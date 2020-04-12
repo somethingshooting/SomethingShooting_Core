@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 using UniRx;
 
@@ -7,13 +8,15 @@ public class SkillController : MonoBehaviour
 {
     private InputController InputController;
 
-    public IActiveSkill NormalShotSkill;
+    public IActiveSkill NormalShotSkill { get; protected set; }
 
-    public List<IActiveSkill> ActiveSkills;
+    public IReadOnlyList<IActiveSkill> ActiveSkills => _ActiveSkills;
+    private List<IActiveSkill> _ActiveSkills = new List<IActiveSkill>();
 
-    public List<IPassiveSkill> PassiveSkills;
+    public IReadOnlyList<IPassiveSkill> PassiveSkills => _PassiveSkills;
+    private List<IPassiveSkill> _PassiveSkills = new List<IPassiveSkill>();
 
-    void Start()
+    private void Start()
     {
         InputController = InputController.Instance;
 
@@ -25,34 +28,22 @@ public class SkillController : MonoBehaviour
             .Where(_ => _)
             .Subscribe(_ => PlayAstiveSkill(0));
 
-        SkillBehaviourStart();
-
         PlayPassiveSills();
     }
 
-    private void Update()
+    public void SetNormalSkill(IActiveSkill skill)
     {
-        // 取得済みスキルのUpdateを実行
-        if (NormalShotSkill.IsRunning.Value)
-        {
-            NormalShotSkill.SkillPlayUpdate();
-        }
+        NormalShotSkill = skill;
+    }
 
-        foreach (var skill in ActiveSkills)
-        {
-            if (skill.IsRunning.Value)
-            {
-                skill.SkillPlayUpdate();
-            }
-        }
+    public void SetSkill(IActiveSkill skill)
+    {
+        _ActiveSkills.Add(skill);
+    }
 
-        foreach (var skill in PassiveSkills)
-        {
-            if (skill.IsRunning.Value)
-            {
-                skill.SkillPlayUpdate();
-            }
-        }
+    public void SetSkill(IPassiveSkill skill)
+    {
+        _PassiveSkills.Add(skill);
     }
 
     private void PlayAstiveSkill(int num)
@@ -84,25 +75,7 @@ public class SkillController : MonoBehaviour
         {
             if (!passiveSkill.IsRunning.Value)
             {
-                passiveSkill.SkillInit();
-            }
-        }
-    }
-
-    private void SkillBehaviourStart()
-    {
-        NormalShotSkill.SkillInit();
-
-        foreach (var skill in ActiveSkills)
-        {
-                skill.SkillInit();
-        }
-
-        foreach (var skill in PassiveSkills)
-        {
-            if (!skill.IsRunning.Value)
-            {
-                skill.SkillInit();
+                passiveSkill.Start();
             }
         }
     }

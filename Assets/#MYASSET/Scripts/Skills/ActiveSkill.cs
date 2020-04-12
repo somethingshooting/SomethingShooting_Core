@@ -4,16 +4,19 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 
-public abstract class ActiveSkill : ScriptableObject, IActiveSkill
+public abstract class ActiveSkill : MonoBehaviour, IActiveSkill
 {
-    public abstract string SkillName { get; }
-    public abstract SkillAttributeType AttributeType { get; }
+    public string SkillName => _SkillName;
+    [SerializeField] protected string _SkillName;
+
+    public SkillAttributeType AttributeType => _AttributeType;
+    [SerializeField] protected SkillAttributeType _AttributeType = SkillAttributeType.None;
 
     public IReadOnlyReactiveProperty<bool> IsRunning => _IsRunning;
     protected BoolReactiveProperty _IsRunning = new BoolReactiveProperty(false);
 
     /// <summary> スキルのリキャスト時間 </summary>
-    public float RecastTime = 0;
+    public float RecastTime = 3;
     public float RecastTimeCount { get; protected set; } = 0;
 
     /// <summary>
@@ -24,9 +27,47 @@ public abstract class ActiveSkill : ScriptableObject, IActiveSkill
     /// <summary>
     /// スキルの全体硬直時間
     /// </summary>
-    [SerializeField] protected float SkillTime = 10;
+    [SerializeField] protected float SkillTime = 2;
 
     protected float SkillTimeCount = 0;
+
+    public virtual void Start()
+    {
+        // IsRunning == ture になった時に実行される処理
+        IsRunning
+            .Where(_ => _)
+            .Subscribe(_ =>
+            {
+                RecastTimeCount = RecastTime;
+                SkillTimeCount = SkillTime;
+            });
+
+        // IsRunning == false になったときに実行される処理
+        IsRunning
+            .SkipLatestValueOnSubscribe()
+            .Where(_ => !_)
+            .Subscribe(_ => SkillEnd());
+
+        this.UpdateAsObservable()
+            .Where(_ => IsRunning.Value)
+            .Subscribe(_ => SkillPlayUpdate());
+
+
+        Init();
+
+        this.UpdateAsObservable()
+            .Subscribe(_ =>
+            {
+                if (RecastTimeCount > 0)
+                {
+                    RecastTimeCount -= Time.deltaTime;
+                    if (RecastTimeCount < 0)
+                    {
+                        RecastTimeCount = 0;
+                    }
+                }
+            });
+    }
 
     /// <summary>
     /// シーン開始時に一度だけ呼ばれる
@@ -48,41 +89,26 @@ public abstract class ActiveSkill : ScriptableObject, IActiveSkill
     /// </summary>
     protected virtual void SkillEnd() { }
 
-    public virtual void SkillInit()
-    {
-        // IsRunning == ture になった時に実行される処理
-        IsRunning
-            .Where(_ => _)
-            .Subscribe(_ =>
-            {
-                RecastTimeCount = RecastTime;
-                SkillTimeCount = SkillTime;
-            });
-
-        // IsRunning == false になったときに実行される処理
-        IsRunning
-            .SkipLatestValueOnSubscribe()
-            .Where(_ => !_)
-            .Subscribe(_ => SkillEnd());
-
-        Init();
-    }
-
     public virtual void SkillPlayStart()
     {
-        _IsRunning.Value = true;
+        if (RecastTimeCount > 0)
+        {
+            Debug.Log("スキルがリキャスト中です 残り時間 : "+ RecastTimeCount);
+            return;
+        }
         SkillStart();
+        _IsRunning.Value = true;
     }
 
     public virtual void SkillPlayUpdate()
     {
         // RecastTimeCount > 0 の時に実行される処理
-        if (RecastTimeCount > 0)
+        if (SkillTimeCount >= 0)
         {
-            RecastTimeCount -= Time.deltaTime * RecastTimeCorrection.Value;
-            if (RecastTimeCount < 0)
+            SkillTimeCount -= Time.deltaTime;
+            if (SkillTimeCount < 0)
             {
-                RecastTimeCount = 0;
+                SkillTimeCount = 0;
                 SkillEnd();
                 _IsRunning.Value = false;
             }
