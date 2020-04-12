@@ -7,7 +7,7 @@ using UniRx;
 public class PlayerHitPoint : MonoBehaviour,IHitPointObject
 {
     public IObservable<Unit> DeadSubject => _DeadSubject;
-    protected Subject<Unit> _DeadSubject;
+    protected Subject<Unit> _DeadSubject = new Subject<Unit>();
 
     public virtual void GetDamage(int value, SkillAttributeType attribute)
     {
@@ -22,5 +22,8 @@ public class PlayerHitPoint : MonoBehaviour,IHitPointObject
     private void Start()
     {
         _State = GetComponent<PlayerState>();
+
+        DeadSubject
+            .Subscribe(_ => SceneManager.Instance.ScangeScene("_GameOver"));
     }
 }

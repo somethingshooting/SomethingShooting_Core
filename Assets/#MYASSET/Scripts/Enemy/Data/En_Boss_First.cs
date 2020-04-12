@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 public class En_Boss_First : EnemyBehaviour
 {
@@ -18,6 +19,9 @@ public class En_Boss_First : EnemyBehaviour
     {
         _Controller = GetComponent<SkillController>();
         _Phase = -2;
+
+        DeadSubject
+            .Subscribe(_ => SceneManager.Instance.ScangeScene("_Clear"));
     }
 
     protected void Update()
