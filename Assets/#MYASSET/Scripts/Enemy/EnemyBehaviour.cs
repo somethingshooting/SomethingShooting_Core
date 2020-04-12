@@ -10,7 +10,7 @@ public abstract class EnemyBehaviour : MonoBehaviour, IHitPointObject
     public IObservable<Unit> DeadSubject => _DeadSubject = new Subject<Unit>();
     protected Subject<Unit> _DeadSubject;
 
-    protected EnemyState _State;
+    public EnemyState _State { get; protected set; } = null;
 
     public virtual void GetDamage(int value,SkillAttributeType attribute)
     {
