@@ -121,6 +121,110 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &99658736 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7264670114092202746, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 7264670113789946244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &99658737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99658736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd2cf42d30a1ee54fb4ea62ee2b0a07a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SkillName: SimpleBullet
+  _AttributeType: 2
+  RecastTime: 0.8
+  SkillTime: 0.5
+  _Bullets:
+  - Obj: {fileID: 862011483190035145, guid: 2c6a43e457be72f4fa1edd47e2a64e2b, type: 3}
+    Rotation: {x: 0, y: 180, z: 0}
+  _ShotTransform: {fileID: 99658745}
+--- !u!114 &99658738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99658736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd2cf42d30a1ee54fb4ea62ee2b0a07a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SkillName: InstantiateMultipleBullet
+  _AttributeType: 2
+  RecastTime: 1.2
+  SkillTime: 0.5
+  _Bullets:
+  - Obj: {fileID: 862011483190035145, guid: 2c6a43e457be72f4fa1edd47e2a64e2b, type: 3}
+    Rotation: {x: 0, y: 180, z: 0}
+  - Obj: {fileID: 862011483190035145, guid: 2c6a43e457be72f4fa1edd47e2a64e2b, type: 3}
+    Rotation: {x: 0, y: 210, z: 0}
+  - Obj: {fileID: 862011483190035145, guid: 2c6a43e457be72f4fa1edd47e2a64e2b, type: 3}
+    Rotation: {x: 0, y: 240, z: 0}
+  - Obj: {fileID: 862011483190035145, guid: 2c6a43e457be72f4fa1edd47e2a64e2b, type: 3}
+    Rotation: {x: 0, y: 150, z: 0}
+  - Obj: {fileID: 862011483190035145, guid: 2c6a43e457be72f4fa1edd47e2a64e2b, type: 3}
+    Rotation: {x: 0, y: 120, z: 0}
+  _ShotTransform: {fileID: 99658745}
+--- !u!4 &99658745 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7264670114092202496, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 7264670113789946244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &99658747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99658736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84bbd90fd426fb54d985c891a2270619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SkillName: 4
+  _AttributeType: 0
+  RecastTime: 3
+  SkillTime: 1.5
+  _BulletObj: {fileID: 862011483190035145, guid: 2c6a43e457be72f4fa1edd47e2a64e2b,
+    type: 3}
+  _InstantiateInterval: 0.1
+  _Clockwise: 0
+  _StartAngle: 180
+  _EndAngle: 360
+--- !u!114 &99658748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99658736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84bbd90fd426fb54d985c891a2270619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SkillName: 3
+  _AttributeType: 0
+  RecastTime: 3
+  SkillTime: 1.5
+  _BulletObj: {fileID: 862011483190035145, guid: 2c6a43e457be72f4fa1edd47e2a64e2b,
+    type: 3}
+  _InstantiateInterval: 0.1
+  _Clockwise: 1
+  _StartAngle: 0
+  _EndAngle: 180
 --- !u!1 &427828104
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +557,7 @@ PrefabInstance:
     - target: {fileID: 7264670114092202496, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7264670114092202496, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
         type: 3}
@@ -495,25 +599,73 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7264670114092202497, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+        type: 3}
+      propertyPath: _ActiveSkills.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264670114092202497, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+        type: 3}
+      propertyPath: _ActiveSkills.Array.data[0]
+      value: 
+      objectReference: {fileID: 7264670113789946245}
+    - target: {fileID: 7264670114092202497, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+        type: 3}
+      propertyPath: _ActiveSkills.Array.data[1]
+      value: 
+      objectReference: {fileID: 99658737}
+    - target: {fileID: 7264670114092202497, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+        type: 3}
+      propertyPath: _ActiveSkills.Array.data[2]
+      value: 
+      objectReference: {fileID: 99658738}
+    - target: {fileID: 7264670114092202497, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+        type: 3}
+      propertyPath: _ActiveSkills.Array.data[3]
+      value: 
+      objectReference: {fileID: 99658747}
+    - target: {fileID: 7264670114092202497, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+        type: 3}
+      propertyPath: _ActiveSkills.Array.data[4]
+      value: 
+      objectReference: {fileID: 99658748}
     - target: {fileID: 7264670114092202508, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
         type: 3}
       propertyPath: SkillTime
-      value: 12
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7264670114092202508, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
         type: 3}
       propertyPath: _InstantiateInterval
-      value: 0.4
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7264670114092202508, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
         type: 3}
       propertyPath: _BulletObj
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 862011483190035145, guid: 2c6a43e457be72f4fa1edd47e2a64e2b,
+        type: 3}
     - target: {fileID: 7264670114092202746, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
         type: 3}
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 7264670114092202747, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+        type: 3}
+      propertyPath: _MoveSpeed
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17ca4b5fa70af9045a363c8f3ab481c3, type: 3}
+--- !u!114 &7264670113789946245 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7264670114092202508, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 7264670113789946244}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99658736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84bbd90fd426fb54d985c891a2270619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
