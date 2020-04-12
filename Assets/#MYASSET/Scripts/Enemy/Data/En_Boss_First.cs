@@ -10,9 +10,11 @@ public class En_Boss_First : EnemyBehaviour
 
     [SerializeField] private int _Phase = -2;
 
+    private SkillController _Controller = null;
+
     protected override void Init()
     {
-
+        _Controller = GetComponent<SkillController>();
     }
 
     protected void Update()
@@ -31,6 +33,6 @@ public class En_Boss_First : EnemyBehaviour
 
     private void PlaySkillBurst()
     {
-
+     
     }
 }
