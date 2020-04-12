@@ -7,7 +7,7 @@ public class SkillSaver : MonoBehaviour
 {
     public Component Skillcomponent;
 
-    [ContextMenu("SaveSkill")]
+    /*[ContextMenu("SaveSkill")]
     public void SaveSkill()
     {
         ISkill skill = Skillcomponent as ISkill;
@@ -18,5 +18,5 @@ public class SkillSaver : MonoBehaviour
         data.SkillName = skill.SkillName;
         data.Json = JsonUtility.ToJson(Skillcomponent);
         data.Type = Skillcomponent.GetType();
-    }
+    }*/
 }

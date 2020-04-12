@@ -32,6 +32,7 @@ public class QuestScaner : MonoBehaviour
             data.FlagCount = flagcount;*/
     }
 
+    /*
     [ContextMenu("ScanQuest")]
     private void _Scan()
     {
@@ -75,5 +76,5 @@ public class QuestScaner : MonoBehaviour
 
 
         return sortobjects;
-    }
+    }*/
 }
