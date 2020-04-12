@@ -91,11 +91,6 @@ public abstract class ActiveSkill : MonoBehaviour, IActiveSkill
 
     public virtual void SkillPlayStart()
     {
-        if (RecastTimeCount > 0)
-        {
-            Debug.Log("スキルがリキャスト中です 残り時間 : "+ RecastTimeCount);
-            return;
-        }
         SkillStart();
         _IsRunning.Value = true;
     }
@@ -119,5 +114,15 @@ public abstract class ActiveSkill : MonoBehaviour, IActiveSkill
         {
             SkillUpdate();
         }
+    }
+
+    public virtual bool PlayableSkill()
+    {
+        if (RecastTimeCount > 0)
+        {
+            Debug.Log("スキルがリキャスト中です 残り時間 : " + RecastTimeCount);
+            return false;
+        }
+        return true;
     }
 }
