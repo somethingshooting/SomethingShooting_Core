@@ -640,6 +640,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerState: {fileID: 0}
+--- !u!114 &1734294234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734294230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5364c1898b14274e9ab1511f199feed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SkillName: 
+  _AttributeType: 0
+  RecastTime: 0
+  SkillTime: 1
+  _Bullet: {fileID: 5326552060531359635, guid: cf425fc1d5d85be41aa9234e43ee04cc, type: 3}
+--- !u!114 &1734294235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734294230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4da70759ebeeff418daede534dd091f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1734294238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734294230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0410906e920f24498667069238c8385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _NormalSkill: {fileID: 1734294234}
+  _ActiveSkills: []
+  _PassiveSkills: []
 --- !u!1 &1957939097
 GameObject:
   m_ObjectHideFlags: 0
