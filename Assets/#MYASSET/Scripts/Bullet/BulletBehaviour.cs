@@ -9,6 +9,7 @@ public abstract class BulletBehaviour : MonoBehaviour, IBullet, IPoolingObject
     public int ATK = 1;
 
     public SkillAttributeType AttributeType;
+    protected PoolingController _PoolingController;
 
     protected virtual void Start()
     {
@@ -24,7 +25,7 @@ public abstract class BulletBehaviour : MonoBehaviour, IBullet, IPoolingObject
 
     public virtual void DestroyBullet()
     {
-        Destroy(gameObject);
+        _PoolingController.Destroy(gameObject);
     }
 
     protected virtual void OnTriggerEnter(Collider other)
