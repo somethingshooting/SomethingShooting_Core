@@ -2,13 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BulletBehaviour : MonoBehaviour, IBullet
+public abstract class BulletBehaviour : MonoBehaviour, IBullet, IPoolingObject
 {
     public float MoveSpeed = 1.0f;
 
     public int ATK = 1;
 
     public SkillAttributeType AttributeType;
+
+    protected virtual void Start()
+    {
+        Init();
+    }
+
+    public void PoolingStart()
+    {
+        Init();
+    }
+
+    protected abstract void Init();
 
     public virtual void DestroyBullet()
     {
