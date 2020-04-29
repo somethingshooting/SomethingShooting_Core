@@ -15,7 +15,8 @@ public class UIController : MonoBehaviour
     void Start()
     {
         _PlayerState = PlayerManager.Instance.PlayerState as ICharacterState;
-       // _PlayerHp.maxValue = _PlayerState.HP.MaxValue;
+        _PlayerHp.maxValue = _PlayerState.HP.MaxValue;
+        _PlayerHp.value = _PlayerState.HP.Value;
         for (int i = 0; i < _BossHp.Count; i++)
         {
             _BossHp[i].gameObject.SetActive(false);
