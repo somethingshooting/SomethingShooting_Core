@@ -4,10 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
-public class PlayerHitPoint : MonoBehaviour,IHitPointObject
+[RequireComponent(typeof(PlayerState), typeof(Collider))]
+public class PlayerHitPoint : MonoBehaviour, IHitPointObject
 {
     public IObservable<Unit> DeadSubject => _DeadSubject;
     protected Subject<Unit> _DeadSubject = new Subject<Unit>();
+
+    [SerializeField] private float _InvincibleTime = 0.6f;
+
+    private PlayerState _State;
+    private Collider _Collider;
 
     public virtual void GetDamage(int value, SkillAttributeType attribute)
     {
@@ -16,14 +22,21 @@ public class PlayerHitPoint : MonoBehaviour,IHitPointObject
         {
             _DeadSubject.OnNext(Unit.Default);
         }
+        StartCoroutine(InvincibleCollider());
     }
 
-    private PlayerState _State;
     private void Start()
     {
         _State = GetComponent<PlayerState>();
+        _Collider = GetComponent<Collider>();
 
         DeadSubject
             .Subscribe(_ => SceneManager.Instance.ScangeScene("_GameOver"));
+    }
+    IEnumerator InvincibleCollider()
+    {
+        _Collider.enabled = false;
+        yield return new WaitForSeconds(_InvincibleTime);
+        _Collider.enabled = true;
     }
 }
