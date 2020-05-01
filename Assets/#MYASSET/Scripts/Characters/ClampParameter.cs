@@ -4,27 +4,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class ClampParameter
+public class ClampParameter<T> : IReadOnlyClampParameter<T>, IClampParameter<T> where T: IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable, new()
 {
-    public int Value => _Value;
-    [SerializeField] private int _Value;
+    public T Value => _Value;
+    [SerializeField] private T _Value;
 
-    public int MaxValue => _MaxValue;
-    [SerializeField] private int _MaxValue;
+    public T MaxValue => _MaxValue;
+    [SerializeField] private T _MaxValue;
 
-    public int MinValue => _MinValue;
-    [SerializeField] private int _MinValue;
+    public T MinValue => _MinValue;
+    [SerializeField] private T _MinValue;
 
-    public ClampParameter(int value, int minValue, int maxValue)
+    public ClampParameter(T value, T minValue, T maxValue)
     {
         _Value = value;
         _MinValue = minValue;
         _MaxValue = maxValue;
     }
 
-    public void AddValue(int value)
+    public void AddValue(T value)
     {
-        var v = Value + value;
-        _Value = Mathf.Clamp(v, MinValue, MaxValue);
+        var v = (dynamic)Value + value;
+        _Value = Mathf.Clamp(v, (dynamic)MinValue, (dynamic)MaxValue);
     }
 }
