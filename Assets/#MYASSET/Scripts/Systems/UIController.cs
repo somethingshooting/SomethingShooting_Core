@@ -5,23 +5,27 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    public ICharacterState _PlayerState;
-    public List<ICharacterState> _BossStates = new List<ICharacterState>();
+    private ICharacterState _PlayerState;
+    private List<ICharacterState> _BossStates = new List<ICharacterState>();
+    private List<string> _BossNames = new List<string>();
 
     [SerializeField] private Slider _PlayerHp;
     [SerializeField] private List<Slider> _BossHp =new List<Slider>();
+    [SerializeField] private List<Text> _BossPlate = new List<Text>();
 
     // Start is called before the first frame update
     void Start()
     {
         _PlayerState = PlayerManager.Instance.PlayerState as ICharacterState;
-       // _PlayerHp.maxValue = _PlayerState.HP.MaxValue;
+        _PlayerHp.maxValue = _PlayerState.HP.MaxValue;
+        _PlayerHp.value = _PlayerState.HP.Value;
         for (int i = 0; i < _BossHp.Count; i++)
         {
             _BossHp[i].gameObject.SetActive(false);
+            _BossPlate[i].text = "";
         }
+        
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -30,9 +34,10 @@ public class UIController : MonoBehaviour
         BossHpUpdate();
     }
 
-    public void BossSet(ICharacterState state)
+    public void BossSet(ICharacterState state,string name)
     {
         _BossStates.Add(state);
+        _BossNames.Add(name);
     }
 
 
@@ -56,19 +61,22 @@ public class UIController : MonoBehaviour
             if (_BossStates[i] == null)
             {
                 _BossStates.RemoveAt(i);
+                _BossNames.RemoveAt(i);
             }
         }
         if (_Count!=_BossStates.Count)
         {
             for (int i = 0; i < _BossHp.Count; i++)
             {
-                _BossHp[i].enabled = false;
+                _BossHp[i].gameObject.SetActive(false);
+                _BossPlate[i].text = "";
             }
             for (int i = 0; i < Mathf.Min(_BossStates.Count, _BossHp.Count); i++)
             {
                 _BossHp[i].gameObject.SetActive(true);
                 _BossHp[i].maxValue = _BossStates[i].HP.MaxValue;
                 _BossHp[i].value = _BossStates[i].HP.Value;
+                _BossPlate[i].text = _BossNames[i];
             }
         }
         _Count = _BossStates.Count;
