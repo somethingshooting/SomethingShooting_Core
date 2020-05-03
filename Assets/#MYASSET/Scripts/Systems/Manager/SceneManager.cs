@@ -16,7 +16,7 @@ public class SceneManager : ManagerBase<SceneManager>
         }
     }
 
-    public void ScangeScene(string sceneName)
+    public void ChangeScene(string sceneName)
     {
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
     }

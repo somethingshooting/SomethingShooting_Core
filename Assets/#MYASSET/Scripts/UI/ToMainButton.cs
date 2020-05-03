@@ -15,6 +15,6 @@ public class ToMainButton : MonoBehaviour
 
     private void OnClick()
     {
-        SceneManager.Instance.ScangeScene("Main");
+        SceneManager.Instance.ChangeScene("Main");
     }
 }
