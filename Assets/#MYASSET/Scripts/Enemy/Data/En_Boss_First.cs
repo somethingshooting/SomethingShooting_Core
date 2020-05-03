@@ -20,6 +20,8 @@ public class En_Boss_First : EnemyBehaviour
         _Controller = GetComponent<SkillController>();
         _Phase = -2;
 
+        GameObject.FindWithTag("GameManager").GetComponent<UIController>().BossSet(_State, name);
+
         DeadSubject
             .Subscribe(_ => SceneManager.Instance.ScangeScene("_Clear"));
     }
