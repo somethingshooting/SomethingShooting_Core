@@ -31,7 +31,7 @@ public class PlayerHitPoint : MonoBehaviour, IHitPointObject
         _Collider = GetComponent<Collider>();
 
         DeadSubject
-            .Subscribe(_ => SceneManager.Instance.ScangeScene("_GameOver"));
+            .Subscribe(_ => SceneManager.Instance.ChangeScene("_GameOver"));
     }
     IEnumerator InvincibleCollider()
     {
