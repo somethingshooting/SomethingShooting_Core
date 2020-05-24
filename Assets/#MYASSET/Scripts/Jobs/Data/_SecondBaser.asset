@@ -10,15 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e13c79f67a282924c9a999fed88b4aed, type: 3}
-  m_Name: _NextJob_One
+  m_Name: _SecondBaser
   m_EditorClassIdentifier: 
-  Name: NextOne
-  Flaver: next one Death!!
-  PrerequisiteJob:
-  - {fileID: 11400000, guid: b3c28a76abf77614e928ea3b835269ba, type: 2}
+  Name: Second!
+  Flaver: This is Sec
+  PrerequisiteJob: []
   GivenSkill:
-  - {fileID: 11400000, guid: fdab7eb6a23006c43b48e1431f688e37, type: 2}
-  - {fileID: 11400000, guid: fdab7eb6a23006c43b48e1431f688e37, type: 2}
   - {fileID: 11400000, guid: fdab7eb6a23006c43b48e1431f688e37, type: 2}
   Storyflag:
     Ambition: 0

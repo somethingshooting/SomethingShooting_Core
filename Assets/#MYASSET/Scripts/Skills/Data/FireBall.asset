@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bed7f90221759a4da8cd00e71965abe, type: 3}
   m_Name: FireBall
   m_EditorClassIdentifier: 
-  SkillName: 
+  SkillName: FireBall
   Json: 

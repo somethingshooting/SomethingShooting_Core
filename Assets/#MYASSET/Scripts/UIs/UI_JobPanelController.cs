@@ -13,6 +13,7 @@ public class UI_JobPanelController : MonoBehaviour
     private GameObject _DetailPanel = null;
 
     private List<UI_JobButtonController> _UI_Jobs = new List<UI_JobButtonController>();
+    private List<Text> _UI_JobText = new List<Text>();
 
     [SerializeField] private Text _JobName_Text = null;
     [SerializeField] private Text _JobFlever_Text = null;
@@ -50,6 +51,7 @@ public class UI_JobPanelController : MonoBehaviour
                     _UI_Jobs[i].gameObject.SetActive(true);
                 }
                 _UI_Jobs[i].SetJobData(acquirableJobList[i]);
+                _UI_JobText[i].text = acquirableJobList[i].Name;
             }
             else
             {
@@ -76,14 +78,20 @@ public class UI_JobPanelController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void InstantiateJobButton(JobData dataBase)
+    private void InstantiateJobButton(JobData jobData)
     {
         if (_JobPanelContentTransform == null)
         {
             _JobPanelContentTransform = transform.Find("Scroll View/Viewport/Content");
         }
         var obj = Instantiate(_JobButtonObj, _JobPanelContentTransform);
-        _UI_Jobs.Add(obj.GetComponent<UI_JobButtonController>());
+        var button = obj.GetComponent<UI_JobButtonController>();
+        var text = obj.transform.Find("Text").GetComponent<Text>();
+
+        button.SetJobData(jobData);
+        text.text = jobData.Name;
+        _UI_JobText.Add(text);
+        _UI_Jobs.Add(button);
     }
 
     public void OnClockJobButton(JobData jobData)
@@ -94,7 +102,7 @@ public class UI_JobPanelController : MonoBehaviour
         }
 
         _JobName_Text.text = jobData.Name;
-        _JobFlever_Text.text = jobData.Name;
+        _JobFlever_Text.text = jobData.Flaver;
         SelectJob = jobData;
 
         var givenSkills = jobData.GivenSkill;

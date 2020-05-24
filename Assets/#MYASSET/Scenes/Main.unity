@@ -3855,6 +3855,7 @@ MonoBehaviour:
   _AllJobData:
   - {fileID: 11400000, guid: bea39ce260ff3fa4fbd0d56bf347f3a9, type: 2}
   - {fileID: 11400000, guid: b3c28a76abf77614e928ea3b835269ba, type: 2}
+  - {fileID: 11400000, guid: d5469db21767c7442877bc77cd33b623, type: 2}
 --- !u!1 &1961578434
 GameObject:
   m_ObjectHideFlags: 0
