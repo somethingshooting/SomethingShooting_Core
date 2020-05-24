@@ -120,7 +120,7 @@ public abstract class ActiveSkill : MonoBehaviour, IActiveSkill
     {
         if (RecastTimeCount > 0)
         {
-            Debug.Log("スキルがリキャスト中です 残り時間 : " + RecastTimeCount);
+            //Debug.Log("スキルがリキャスト中です 残り時間 : " + RecastTimeCount);
             return false;
         }
         return true;
