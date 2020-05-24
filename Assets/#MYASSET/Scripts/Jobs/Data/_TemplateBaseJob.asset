@@ -15,7 +15,9 @@ MonoBehaviour:
   Name: BaseJob
   Flaver: base Death!!
   PrerequisiteJob: []
-  GivenSkill: []
+  GivenSkill:
+  - {fileID: 0}
+  - {fileID: 0}
   Storyflag:
     Ambition: 0
     Harmony: 0
