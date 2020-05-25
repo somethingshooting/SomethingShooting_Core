@@ -8,7 +8,7 @@ public interface ICharacterState
 
     Parameter MaxHP { get; }*/
 
-    ClampParameter HP { get; }
+    ClampParameter<int> HP { get; }
 
     Parameter<int> Barrier { get; }
 
