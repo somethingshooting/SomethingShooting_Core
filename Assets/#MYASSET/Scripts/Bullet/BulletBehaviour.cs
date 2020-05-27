@@ -11,6 +11,9 @@ public abstract class BulletBehaviour : MonoBehaviour, IBullet, IPoolingObject
     public SkillAttributeType AttributeType;
     protected PoolingController _PoolingController;
 
+    public string PoolingCode => _PoolingCode;
+    [SerializeField] private string _PoolingCode;
+
     protected virtual void Start()
     {
         Init();
