@@ -2913,6 +2913,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17ca4b5fa70af9045a363c8f3ab481c3, type: 3}
+--- !u!1 &1579494355 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7264670114092202746, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1579494354}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1615010834
 GameObject:
   m_ObjectHideFlags: 0
@@ -3773,6 +3779,7 @@ GameObject:
   - component: {fileID: 1957939100}
   - component: {fileID: 1957939101}
   - component: {fileID: 1957939102}
+  - component: {fileID: 1957939103}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -3856,6 +3863,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bea39ce260ff3fa4fbd0d56bf347f3a9, type: 2}
   - {fileID: 11400000, guid: b3c28a76abf77614e928ea3b835269ba, type: 2}
   - {fileID: 11400000, guid: d5469db21767c7442877bc77cd33b623, type: 2}
+--- !u!114 &1957939103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957939097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c55893d280854a439a0be0468c093bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj:
+    FlagCount: 1
+    Enemies:
+    - Position: {x: 0, y: 0, z: 0}
+      Prefab: {fileID: 1579494355}
+      Flag: 1
+  json: '{"FlagCount":1,"Enemies":[{"Position":{"x":0.0,"y":0.0,"z":0.0},"Prefab":{"instanceID":-1898},"Flag":true}]}'
 --- !u!1 &1961578434
 GameObject:
   m_ObjectHideFlags: 0
