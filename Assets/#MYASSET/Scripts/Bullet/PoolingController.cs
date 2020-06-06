@@ -23,7 +23,8 @@ public class PoolingController : ManagerBase<PoolingController>
             return Object.Instantiate(prefab);
         }
 
-        var gameObj = TakeAtDictionary(pool, prefab);
+        var poolObj = new PoolObjct(pool, prefab);
+        var gameObj = TakeAtDictionary(poolObj);
         InitObject(gameObj);
         return gameObj;
     }
@@ -61,15 +62,15 @@ public class PoolingController : ManagerBase<PoolingController>
     /// </summary>
     /// <param name="obj">PoolingObjectのコード</param>
     /// <returns>アクティブ化したゲームオブジェクト</returns>
-    private GameObject TakeAtDictionary(IPoolingObject poolingObj, GameObject prefab)
+    private GameObject TakeAtDictionary(PoolObjct pool)
     {
-        if (IsPooledObject(poolingObj.PoolingCode))
+        if (IsPooledObject(pool.PoolingObject.PoolingCode))
         {
-            return TakeAtList(poolingObj, prefab);
+            return TakeAtList(pool);
         }
         var objList = new List<GameObject>();
-        _PoolingObjectsDictionary.Add(poolingObj.PoolingCode, objList);
-        return TakeAtList(poolingObj, prefab);
+        _PoolingObjectsDictionary.Add(pool.PoolingObject.PoolingCode, objList);
+        return TakeAtList(pool);
     }
 
     /// <summary> PoolingObjectかどうかを返す </summary>
@@ -86,28 +87,28 @@ public class PoolingController : ManagerBase<PoolingController>
     /// <summary> 待機状態のゲームオブジェクトを返す </summary>
     /// <param name="poolingObj"></param>
     /// <returns></returns>
-    private GameObject TakeAtList(IPoolingObject poolingObj, GameObject prefab)
+    private GameObject TakeAtList(PoolObjct pool)
     {
-        foreach (var item in _PoolingObjectsDictionary[poolingObj.PoolingCode])
+        foreach (var item in _PoolingObjectsDictionary[pool.PoolingObject.PoolingCode])
         {
             if (item.activeSelf == false)
             {
                 return item;
             }
         }
-        return  AddPool(poolingObj, prefab);
+        return  AddPool(pool);
     }
 
-    private GameObject AddPool(IPoolingObject poolingObject, GameObject prefab)
+    private GameObject AddPool(PoolObjct pool)
     {
-        var pool = Instantiate(prefab, transform);
-        if (pool.activeSelf == false)
+        var poolObj = Instantiate(pool.PrefabObject, transform);
+        if (poolObj.activeSelf == false)
         {
-            pool.SetActive(true);
+            poolObj.SetActive(true);
         }
-        _PooledList.Add(new PoolObjct(poolingObject, prefab));
-        _PoolingObjectsDictionary[poolingObject.PoolingCode].Add(pool);
-        return pool;
+        _PooledList.Add(pool);
+        _PoolingObjectsDictionary[pool.PoolingObject.PoolingCode].Add(poolObj);
+        return poolObj;
     }
 
     public class PoolObjct
