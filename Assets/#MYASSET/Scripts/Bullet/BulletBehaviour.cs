@@ -2,17 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BulletBehaviour : MonoBehaviour, IBullet
+public abstract class BulletBehaviour : MonoBehaviour, IBullet, IPoolingObject
 {
     public float MoveSpeed = 1.0f;
 
     public int ATK = 1;
 
     public SkillAttributeType AttributeType;
+    protected PoolingController _PoolingController;
+
+    public string PoolingCode => _PoolingCode;
+    [SerializeField] private string _PoolingCode;
+
+    protected virtual void Start()
+    {
+        Init();
+    }
+
+    public void PoolingStart()
+    {
+        Init();
+    }
+
+    protected abstract void Init();
 
     public virtual void DestroyBullet()
     {
-        Destroy(gameObject);
+        _PoolingController.Destroy(gameObject);
     }
 
     protected virtual void OnTriggerEnter(Collider other)
