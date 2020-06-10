@@ -18,7 +18,7 @@ public class ParagraphManager : MonoBehaviour
     {
         public int FlagCount;
       //  public CharacterData[] Characters;
-        public EnemyBlock[] EnemieBlocks;
+        public EnemyBlock[] EnemyBlocks;
         public BossBlock[] BossBlocks;
         public TextBlock[] TextBlocks;
         public JobSelectBlock[] JobSelectBlocks;
@@ -83,13 +83,13 @@ public class ParagraphManager : MonoBehaviour
         }
         if (!_EnemyEnd)
         {
-            if (CurrentParagraph.EnemieBlocks.Length > _EnemyCount)
+            if (CurrentParagraph.EnemyBlocks.Length > _EnemyCount)
             {
-                for (int i = _EnemyCount; i < CurrentParagraph.EnemieBlocks.Length; i++)
+                for (int i = _EnemyCount; i < CurrentParagraph.EnemyBlocks.Length; i++)
                 {
-                    if (_CurrentDistance >= CurrentParagraph.EnemieBlocks[i].Position.z)
+                    if (_CurrentDistance >= CurrentParagraph.EnemyBlocks[i].Position.z)
                     {
-                        EnemyBlockFunction(CurrentParagraph.EnemieBlocks[i]);
+                        EnemyBlockFunction(CurrentParagraph.EnemyBlocks[i]);
                         _EnemyCount++;
                     }
                     else
