@@ -18,7 +18,7 @@ public class TextEventUI : MonoBehaviour
         progress = -1;
         TextName.enabled = true;
         TextMessage.enabled = true;
-        for (int i = 0; i < block.Characters.Length||i<4; i++)
+        for (int i = 0; (i < block.Characters.Length && i <4); i++)
         {
             CharactorImage[i].sprite = block.Characters[i].Image;
             CharactorImage[i].enabled = true;
@@ -26,7 +26,7 @@ public class TextEventUI : MonoBehaviour
         CurrentBlock = block;
         NextMessage();
     }
-
+    [ContextMenu("NextMessage")]
     public void NextMessage()
     {
         progress++;

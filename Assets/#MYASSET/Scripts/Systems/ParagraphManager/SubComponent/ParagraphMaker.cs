@@ -25,7 +25,7 @@ public class ParagraphMaker : MonoBehaviour
         enemylist.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
         for (int i = 0; i < enemylist.Count; i++)
         {
-            if(enemylist[i].GetComponent<BossFlag>() == null)
+            if(enemylist[i].GetComponent<BossFlag>() != null)
             {
                 enemylist.RemoveAt(i);
                 i--;
@@ -64,7 +64,7 @@ public class ParagraphMaker : MonoBehaviour
         enemylist.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
         for (int i = 0; i < enemylist.Count; i++)
         {
-            if (enemylist[i].GetComponent<BossFlag>() != null)
+            if (enemylist[i].GetComponent<BossFlag>() == null)
             {
                 enemylist.RemoveAt(i);
                 i--;

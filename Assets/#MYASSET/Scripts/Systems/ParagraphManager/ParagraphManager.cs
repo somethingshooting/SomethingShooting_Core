@@ -59,8 +59,8 @@ public class ParagraphManager : MonoBehaviour
         {
         }
     }
-      private bool _isMoving = true;
-     private float _CurrentDistance;
+    [SerializeField] private bool _isMoving = true;
+    [SerializeField] private float _CurrentDistance;
     [SerializeField] private float _ScrollSpeed = 0.5f;
     [SerializeField] private float _SpownZ = 5;
 
@@ -77,6 +77,7 @@ public class ParagraphManager : MonoBehaviour
     {
         if (CurrentParagraph == null)
             return;
+
         if (_isMoving)
         {
             _CurrentDistance += _ScrollSpeed * Time.deltaTime;
@@ -93,13 +94,15 @@ public class ParagraphManager : MonoBehaviour
                         _EnemyCount++;
                     }
                     else
-                        return;
+                    {
+                        i += CurrentParagraph.EnemyBlocks.Length;
+                    }
                 }
             }
             else
                 _EnemyEnd = true;
         }
-        if (!_BossEnd&& _isMoving)
+        if (!_BossEnd && _isMoving)
         {
             if (CurrentParagraph.BossBlocks.Length > _BossCount)
             {
@@ -111,7 +114,9 @@ public class ParagraphManager : MonoBehaviour
                         _BossCount++;
                     }
                     else
-                        return;
+                    {
+                        i += CurrentParagraph.BossBlocks.Length;
+                    }
                 }
             }
             else
