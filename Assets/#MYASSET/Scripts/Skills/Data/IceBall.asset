@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bed7f90221759a4da8cd00e71965abe, type: 3}
-  m_Name: FireBall
+  m_Name: IceBall
   m_EditorClassIdentifier: 
-  SkillName: 
-  Json: 
+  SkillName: IceBall
+  Type: AS_InstantiateBullet
+  Json: '{"_SkillName":"IceBall","_AttributeType":1,"RecastTime":0.0,"SkillTime":0.5,"_Bullet":{"instanceID":39532},"_ShotTransform":{"instanceID":40902}}'
