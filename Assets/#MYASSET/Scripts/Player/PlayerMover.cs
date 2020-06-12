@@ -1,23 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMover : MonoBehaviour
 {
     public Vector2 screen = new Vector2(5, 5);
     public float speed = 2;
 
-    private InputController input;
+    private PlayerInput input;
     // Start is called before the first frame update
     void Start()
     {
-        input = InputController.Instance;
+        input = InputController.Instance.PlayerInput;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 move = input.PlayerMoveDirection.Value;
+        var moveInput = input.actions["PlayerMove"].ReadValue<Vector2>();
+        Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
         move *= Time.deltaTime * speed;
         Vector3 pos = transform.position;
         pos += move;

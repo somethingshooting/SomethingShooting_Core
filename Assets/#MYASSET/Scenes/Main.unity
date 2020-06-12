@@ -1614,16 +1614,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 961959875}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_PointAction: {fileID: 1054132383583890850, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MoveAction: {fileID: 3710738434707379630, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_SubmitAction: {fileID: 2064916234097673511, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_CancelAction: {fileID: -1967631576421560919, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_LeftClickAction: {fileID: 8056856818456041789, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MiddleClickAction: {fileID: 3279352641294131588, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_RightClickAction: {fileID: 3837173908680883260, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_ScrollWheelAction: {fileID: 4502412055082496612, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDevicePositionAction: {fileID: 4754684134866288074, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
 --- !u!114 &961959877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2906,6 +2925,66 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 7264670114092202746, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264670114092202747, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+        type: 3}
+      propertyPath: _CheckPoint.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264670114092202747, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+        type: 3}
+      propertyPath: _CheckPoint.Array.data[0].x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264670114092202747, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+        type: 3}
+      propertyPath: _CheckPoint.Array.data[0].z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264670114092202747, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+        type: 3}
+      propertyPath: _CheckPoint.Array.data[1].z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264670114092202747, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+        type: 3}
+      propertyPath: _CheckPoint.Array.data[1].x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264670114092202747, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+        type: 3}
+      propertyPath: _CheckPoint.Array.data[2].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264670114092202747, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+        type: 3}
+      propertyPath: _CheckPoint.Array.data[2].z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264670114092202747, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+        type: 3}
+      propertyPath: _CheckPoint.Array.data[3].x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264670114092202747, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+        type: 3}
+      propertyPath: _CheckPoint.Array.data[3].z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264670114092202747, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+        type: 3}
+      propertyPath: _CheckPoint.Array.data[4].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264670114092202747, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
+        type: 3}
+      propertyPath: _CheckPoint.Array.data[4].z
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8162502749693651103, guid: 17ca4b5fa70af9045a363c8f3ab481c3,
         type: 3}
       propertyPath: m_IsKinematic
@@ -3773,6 +3852,7 @@ GameObject:
   - component: {fileID: 1957939100}
   - component: {fileID: 1957939101}
   - component: {fileID: 1957939102}
+  - component: {fileID: 1957939103}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -3856,6 +3936,53 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bea39ce260ff3fa4fbd0d56bf347f3a9, type: 2}
   - {fileID: 11400000, guid: b3c28a76abf77614e928ea3b835269ba, type: 2}
   - {fileID: 11400000, guid: d5469db21767c7442877bc77cd33b623, type: 2}
+--- !u!114 &1957939103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957939097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: f29fb6b74f99980409ffdb083d8d64ca,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 99d9f70b-ad95-4da6-b06f-82d97c8dd235
+    m_ActionName: Battle/PlayerMove[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: da05014b-d69f-483b-b506-12af345d5253
+    m_ActionName: Battle/NormalSkill[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 09caaf08-8222-4d43-a94f-52ae14669f91
+    m_ActionName: Battle/AvtiveSkill_1[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 94110cae-7c2e-4bcc-af94-d81c869bee89
+    m_ActionName: Story/NextText[/Keyboard/space]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Battle
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1961578434
 GameObject:
   m_ObjectHideFlags: 0

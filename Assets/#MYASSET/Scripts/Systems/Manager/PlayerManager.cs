@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UniRx;
 
 public class PlayerManager : ManagerBase<PlayerManager>
@@ -8,6 +9,8 @@ public class PlayerManager : ManagerBase<PlayerManager>
     public PlayerState PlayerState = new PlayerState();
 
     private SkillController _SkillController = null;
+
+    private PlayerInput _PlayerInput = null;
 
     private void Awake()
     {
@@ -18,14 +21,19 @@ public class PlayerManager : ManagerBase<PlayerManager>
     {
         _SkillController = GetComponent<SkillController>();
 
-        var input = InputController.Instance;
+        _PlayerInput = InputController.Instance.PlayerInput;
+    }
 
-        input.NormalShotButtonPushed
-            .Where(_ => _)
-            .Subscribe(_ => _SkillController.PlayAstiveSkill(-1));
+    private void Update()
+    {
+        if (_PlayerInput.actions["NormalSkill"].ReadValue<float>() > 0)
+        {
+            _SkillController.PlayAstiveSkill(-1);
+        }
 
-        input.Skill1ButtonPushed
-            .Where(_ => _)
-            .Subscribe(_ => _SkillController.PlayAstiveSkill(0));
+        if (_PlayerInput.actions["ActiveSkill_1"].ReadValue<float>() > 0)
+        {
+            _SkillController.PlayAstiveSkill(0);
+        }
     }
 }
