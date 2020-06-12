@@ -115,7 +115,7 @@
             "id": "c0deff1a-91d8-4f00-9031-132bbff709b6",
             "actions": [
                 {
-                    "name": "NextText",
+                    "name": "Next",
                     "type": "Button",
                     "id": "94110cae-7c2e-4bcc-af94-d81c869bee89",
                     "expectedControlType": "Button",
@@ -131,7 +131,72 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "NextText",
+                    "action": "Next",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "BasicSystem",
+            "id": "4137c9cf-3717-4e79-b4e7-e6a736128a1c",
+            "actions": [
+                {
+                    "name": "Back",
+                    "type": "Button",
+                    "id": "29ba6918-44c8-44e4-9a4c-b83f3ce28a09",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Okay",
+                    "type": "Button",
+                    "id": "dda18db6-cc67-4136-bff0-0e13ec5a9562",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "cccc3d77-6d5d-466d-8204-8113998f555c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5003a3ea-a003-4b75-9b11-9e585bea1b09",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "59c633ba-19e1-4056-87a5-5943588853cf",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Okay",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "872f44c9-2bff-48de-bd3d-c106a93ab915",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
