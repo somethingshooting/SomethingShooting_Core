@@ -488,6 +488,8 @@ GameObject:
   - component: {fileID: 5846639449012522112}
   - component: {fileID: 5846639449012522115}
   - component: {fileID: 5846639449012522114}
+  - component: {fileID: 559326193}
+  - component: {fileID: 559326197}
   m_Layer: 5
   m_Name: Select Skill Panel
   m_TagString: Untagged
@@ -562,6 +564,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06b3635cf0bd0704c873d7fe4b96264f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &559326193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5846639449012522116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9df82ab2b4f295449425af8dabfd0f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SelectSkillButtonObj: {fileID: 424691004061821367, guid: 844c012a263aeff45a55cbc026bd357a,
+    type: 3}
+  _CruuentSkillButtonObj: {fileID: 6460668751652065777, guid: 52e89537f29a15a40bddc67c5fbc7c6d,
+    type: 3}
+--- !u!114 &559326197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5846639449012522116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57caad414852bd94e8ce043be725778a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5846639449280043045
@@ -852,6 +882,7 @@ GameObject:
   - component: {fileID: 5846639449509643415}
   - component: {fileID: 5846639449509643414}
   - component: {fileID: 5846639449509643401}
+  - component: {fileID: 1900959983}
   m_Layer: 5
   m_Name: Success Button
   m_TagString: Untagged
@@ -958,6 +989,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1900959983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5846639449509643403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0250a30ebd5ede5479b9c320e8de6239, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5846639449629813689
 GameObject:
   m_ObjectHideFlags: 0
@@ -1487,7 +1530,7 @@ GameObject:
   - component: {fileID: 5846639449998355863}
   - component: {fileID: 5846639449998355862}
   m_Layer: 5
-  m_Name: Change Skill Panel
+  m_Name: Select Skill Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1723,6 +1766,7 @@ GameObject:
   - component: {fileID: 5846639450133362508}
   - component: {fileID: 5846639450133362511}
   - component: {fileID: 5846639450133362510}
+  - component: {fileID: 709463468}
   m_Layer: 5
   m_Name: Active Skill Button
   m_TagString: Untagged
@@ -1829,6 +1873,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &709463468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5846639450133362496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0e0b7837a102f48975152f9790849c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SkillPattern: 2
 --- !u!1 &5846639450151948590
 GameObject:
   m_ObjectHideFlags: 0
@@ -1841,6 +1898,7 @@ GameObject:
   - component: {fileID: 5846639450151948586}
   - component: {fileID: 5846639450151948589}
   - component: {fileID: 5846639450151948588}
+  - component: {fileID: 257636180}
   m_Layer: 5
   m_Name: Passive Skill Button
   m_TagString: Untagged
@@ -1947,6 +2005,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &257636180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5846639450151948590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0e0b7837a102f48975152f9790849c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SkillPattern: 3
 --- !u!1 &5846639450245144176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1959,7 +2030,7 @@ GameObject:
   - component: {fileID: 5846639450245144191}
   - component: {fileID: 5846639450245144190}
   m_Layer: 5
-  m_Name: JobName_Text
+  m_Name: SkillName_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2036,6 +2107,7 @@ GameObject:
   - component: {fileID: 5846639450303676596}
   - component: {fileID: 5846639450303676599}
   - component: {fileID: 5846639450303676598}
+  - component: {fileID: 1049122091}
   m_Layer: 5
   m_Name: Normal Skill Button
   m_TagString: Untagged
@@ -2142,6 +2214,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1049122091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5846639450303676584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0e0b7837a102f48975152f9790849c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SkillPattern: 1
 --- !u!1 &5846639450309820807
 GameObject:
   m_ObjectHideFlags: 0
@@ -2308,7 +2393,7 @@ GameObject:
   - component: {fileID: 5846639450464422348}
   - component: {fileID: 5846639450464422351}
   m_Layer: 5
-  m_Name: JobName_Text
+  m_Name: SkillName_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
-public class UI_SkillButtonController : MonoBehaviour
+public class UI_SkillSuccessButton : MonoBehaviour
 {
-    [SerializeField] private bool _IsSelect = false;
-
-    public SkillData SkillData { get; private set; } = null;
     private Button _Button = null;
     UI_SkillPanelController SkillPanelController = null;
 
@@ -19,14 +15,8 @@ public class UI_SkillButtonController : MonoBehaviour
         SkillPanelController = transform.root.Find("Select Skill Panel").GetComponent<UI_SkillPanelController>();
     }
 
-    public void SetSkillData(SkillData data)
-    {
-        SkillData = data;
-    }
-
     private void OnButton()
     {
-        Debug.Log(SkillData.SkillName + "のボタンが押されました");
-        SkillPanelController.OnSelectOrCurrentButtonDown(_IsSelect, SkillData);
+        SkillPanelController.OnSuccess();
     }
 }

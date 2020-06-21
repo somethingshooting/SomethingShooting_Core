@@ -5,6 +5,7 @@ using UnityEngine;
 public class SkillData : ScriptableObject
 {
     public string SkillName;
+    public string Flever;
     public string Type;
     public SkillType Skilltype;
     public string Json;
