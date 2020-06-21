@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     private ICharacterState _PlayerState;
-    private List<ICharacterState> _BossStates = new List<ICharacterState>();
+   private List<ICharacterState> _BossStates = new List<ICharacterState>();
     private List<string> _BossNames = new List<string>();
 
     [SerializeField] private Slider _PlayerHp;
@@ -53,12 +53,12 @@ public class UIController : MonoBehaviour
             _BossHp[i].value = _BossStates[i].HP.Value;
         }
     }
-    private int _Count = 0;
+   [SerializeField] private int _Count = 0;
     private void BossCheck()
     {
         for (int i = _BossStates.Count - 1; i >= 0; i--)
         {
-            if (_BossStates[i] == null)
+            if (_BossStates[i].HP.Value == 0)
             {
                 _BossStates.RemoveAt(i);
                 _BossNames.RemoveAt(i);

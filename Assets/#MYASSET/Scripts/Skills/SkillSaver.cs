@@ -6,7 +6,6 @@ using UnityEditor;
 
 public class SkillSaver : MonoBehaviour
 {
-    public SkillData.SkillType skillType;
     public Component Skillcomponent;
 
     [ContextMenu("SaveSkill")]
@@ -19,7 +18,6 @@ public class SkillSaver : MonoBehaviour
         data.SkillName = skill.SkillName;
         data.Json = JsonUtility.ToJson(Skillcomponent);
         data.Type = Skillcomponent.GetType().ToString();
-        data.Skilltype = skillType;
         AssetDatabase.CreateAsset(data, "Assets/#MYASSET/Scripts/Skills/Data/" + skill.SkillName + ".asset");
     }
 }

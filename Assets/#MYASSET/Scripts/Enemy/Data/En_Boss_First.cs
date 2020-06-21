@@ -22,8 +22,10 @@ public class En_Boss_First : EnemyBehaviour
 
         GameObject.FindWithTag("GameManager").GetComponent<UIController>().BossSet(_State, name);
 
-        DeadSubject
-            .Subscribe(_ => SceneManager.Instance.ChangeScene("_Clear"));
+        /*  DeadSubject
+              .Subscribe(_ => SceneManager.Instance.ChangeScene("_Clear"));*/
+       /* DeadSubject
+        .Subscribe(_ => Destroy(gameObject,1f));*/
     }
 
     protected void Update()

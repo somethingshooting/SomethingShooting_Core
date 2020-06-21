@@ -187,7 +187,7 @@ MonoBehaviour:
   _AttributeType: 0
   RecastTime: 3
   SkillTime: 4
-  _BulletObj: {fileID: 862011483190035145, guid: 2c6a43e457be72f4fa1edd47e2a64e2b,
+  _BulletObj: {fileID: 9070608284734516645, guid: a341f1978cdb9274b8d16a0eff62fb26,
     type: 3}
   _InstantiateInterval: 0.1
   _Clockwise: 1
@@ -230,15 +230,15 @@ MonoBehaviour:
   RecastTime: 1.2
   SkillTime: 0.5
   _Bullets:
-  - Obj: {fileID: 862011483190035145, guid: 2c6a43e457be72f4fa1edd47e2a64e2b, type: 3}
+  - Obj: {fileID: 9070608284734516645, guid: a341f1978cdb9274b8d16a0eff62fb26, type: 3}
     Rotation: {x: 0, y: 180, z: 0}
-  - Obj: {fileID: 862011483190035145, guid: 2c6a43e457be72f4fa1edd47e2a64e2b, type: 3}
+  - Obj: {fileID: 9070608284734516645, guid: a341f1978cdb9274b8d16a0eff62fb26, type: 3}
     Rotation: {x: 0, y: 210, z: 0}
-  - Obj: {fileID: 862011483190035145, guid: 2c6a43e457be72f4fa1edd47e2a64e2b, type: 3}
+  - Obj: {fileID: 9070608284734516645, guid: a341f1978cdb9274b8d16a0eff62fb26, type: 3}
     Rotation: {x: 0, y: 240, z: 0}
-  - Obj: {fileID: 862011483190035145, guid: 2c6a43e457be72f4fa1edd47e2a64e2b, type: 3}
+  - Obj: {fileID: 9070608284734516645, guid: a341f1978cdb9274b8d16a0eff62fb26, type: 3}
     Rotation: {x: 0, y: 150, z: 0}
-  - Obj: {fileID: 862011483190035145, guid: 2c6a43e457be72f4fa1edd47e2a64e2b, type: 3}
+  - Obj: {fileID: 9070608284734516645, guid: a341f1978cdb9274b8d16a0eff62fb26, type: 3}
     Rotation: {x: 0, y: 120, z: 0}
   _ShotTransform: {fileID: 7264670114092202496}
 --- !u!114 &99658747
@@ -257,7 +257,7 @@ MonoBehaviour:
   _AttributeType: 0
   RecastTime: 3
   SkillTime: 1.5
-  _BulletObj: {fileID: 862011483190035145, guid: 2c6a43e457be72f4fa1edd47e2a64e2b,
+  _BulletObj: {fileID: 9070608284734516645, guid: a341f1978cdb9274b8d16a0eff62fb26,
     type: 3}
   _InstantiateInterval: 0.1
   _Clockwise: 0
@@ -279,7 +279,7 @@ MonoBehaviour:
   _AttributeType: 0
   RecastTime: 3
   SkillTime: 1.5
-  _BulletObj: {fileID: 862011483190035145, guid: 2c6a43e457be72f4fa1edd47e2a64e2b,
+  _BulletObj: {fileID: 9070608284734516645, guid: a341f1978cdb9274b8d16a0eff62fb26,
     type: 3}
   _InstantiateInterval: 0.1
   _Clockwise: 1
