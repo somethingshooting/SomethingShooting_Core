@@ -62,7 +62,7 @@ public class UI_SkillSelectButtonBuilder : MonoBehaviour
         }
         else
         {
-            Debug.Log("そのボタンの子にテキストは存在しません");
+            Debug.LogWarning("そのボタンの子にテキストは存在しません");
         }
     }
 

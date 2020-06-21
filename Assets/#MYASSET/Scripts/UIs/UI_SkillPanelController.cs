@@ -81,7 +81,6 @@ public class UI_SkillPanelController : MonoBehaviour
         _NormalSkills = _SelectableSkillDatas.FindAll(data => data.Skilltype == SkillData.SkillType.normal);
         _ActiveSkills = _SelectableSkillDatas.FindAll(data => data.Skilltype == SkillData.SkillType.active);
         _PassiveSkills = _SelectableSkillDatas.FindAll(data => data.Skilltype == SkillData.SkillType.passive);
-        Debug.Log("スキル情報をアップデートしました。");
     }
 
     private void ChangeViewButtonsPattern()
@@ -104,7 +103,6 @@ public class UI_SkillPanelController : MonoBehaviour
                 _ButtonBuilder.ChangeActiveSkillPatternCurrent(_PlayerCurrentData.PassiveSkillDatas);
                 break;
         }
-        Debug.Log("スキルの見た目情報をアップデートしました。");
     }
 
     public void ChangePattern(SelectSkillPattern pattern)
@@ -122,26 +120,10 @@ public class UI_SkillPanelController : MonoBehaviour
 
         if (isSelect)
         {
-            if (_SelectSkillData.Value == null)
-            {
-                Debug.Log("選択欄のデータを空の状態のデータから" + data.SkillName + "へと変更します。");
-            }
-            else
-            {
-                Debug.Log("選択欄のデータを" + _SelectSkillData.Value.SkillName + "から" + data.SkillName + "へと変更します。");
-            }
             _SelectSkillData.Value = data;
         }
         else
         {
-            if (_CurrentSkillData.Value == null)
-            {
-                Debug.Log("選択欄のデータを空状態のデータから" + data.SkillName + "へと変更します。");
-            }
-            else
-            {
-                Debug.Log("選択欄のデータを" + _CurrentSkillData.Value.SkillName + "から" + data.SkillName + "へと変更します。");
-            }
             _CurrentSkillData.Value = data;
         }
     }
@@ -164,7 +146,6 @@ public class UI_SkillPanelController : MonoBehaviour
                     break;
                 case SelectSkillPattern.Passive:
                     list = new List<SkillData>(_PlayerCurrentData.PassiveSkillDatas);
-                    Debug.Log("Skill " + list[list.IndexOf(_CurrentSkillData.Value)].SkillName + "を Skill " + _SelectSkillData.Value.SkillName + "へ変更します。");
                     list[list.IndexOf(_CurrentSkillData.Value)] = _SelectSkillData.Value;
 
                     _PlayerCurrentData.SetPassiveSkills(list);
@@ -173,6 +154,12 @@ public class UI_SkillPanelController : MonoBehaviour
             UpdateSkillDatas();
             ChangeViewButtonsPattern();
         }
+    }
+
+    // スキル設定パネルを閉じる
+    public void CloseSkillSelectPanel()
+    {
+        gameObject.SetActive(false);
     }
 
     public enum SelectSkillPattern
