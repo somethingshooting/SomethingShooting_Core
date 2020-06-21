@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 using UniRx;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(TextEventUI))]
 public class ParagraphManager : MonoBehaviour
@@ -14,60 +15,18 @@ public class ParagraphManager : MonoBehaviour
     [SerializeField] private ParagraphData[] BranchStory;
     [SerializeField] private ParagraphData ComplexStory;
     public int[] StoryParamater;
-    public class ParagraphData:ScriptableObject
-    {
-        public int FlagCount;
-      //  public CharacterData[] Characters;
-        public EnemyBlock[] EnemyBlocks;
-        public BossBlock[] BossBlocks;
-        public TextBlock[] TextBlocks;
-        public JobSelectBlock[] JobSelectBlocks;
-        public abstract class EventBlock
-        {
-            public Vector3 Position;
-        }
-        [Serializable]
-        public class EnemyBlock:EventBlock
-        {
-            public GameObject Prefab;
-        }
-        [Serializable]
-        public class BossBlock : EventBlock
-        {
-            public GameObject Prefab;
-        }
-        [Serializable]
-        public class TextBlock:EventBlock
-        {
-            public CharacterData[] Characters;
-            public TextData[] Texts;
-            [Serializable]
-            public class TextData
-            {
-                public int Character;
-                public string Message;
-            }
-        }
-        [Serializable]
-        public class CharacterData
-        {
-            public string Name;
-            public Sprite Image;
-        }
-        [Serializable]
-        public class JobSelectBlock:EventBlock
-        {
-        }
-    }
+
     [SerializeField] private bool _isMoving = true;
     [SerializeField] private float _CurrentDistance;
     [SerializeField] private float _ScrollSpeed = 0.5f;
     [SerializeField] private float _SpownZ = 5;
 
+    private PlayerInput input;
     private void Awake()
     {
         CurrentParagraph = MainStory[0];
         textUI = GetComponent<TextEventUI>();
+        input = GetComponent<PlayerInput>();
     }
 
     private ParagraphData CurrentParagraph;
@@ -154,6 +113,7 @@ public class ParagraphManager : MonoBehaviour
     private int _ParagraphProgress = 0;
     private void NextParagraph()
     {
+        _CurrentDistance = 0;
         _ParagraphProgress++;
         _EnemyCount = 0; _BossCount = 0; _TextCount = 0; _JobSelectCout = 0;
         _EnemyEnd = false; _BossEnd = false; _TextEnd = false; _JobSelectEnd = false;
@@ -180,6 +140,7 @@ public class ParagraphManager : MonoBehaviour
         {
             CurrentParagraph = null;
             //クリア処理
+            SceneManager.Instance.ChangeScene("_Clear");
         }
     }
     //-----------------------------------------------------------------------------------------------------------------------
@@ -198,17 +159,20 @@ public class ParagraphManager : MonoBehaviour
         Vector3 pos = block.Position;
         pos.z = _SpownZ;
         obj.transform.position = pos;
-        obj.GetComponent<EnemyBehaviour>().DeadSubject.Subscribe(_ => { _BossLeft--; if (_BossLeft <= 0) { _isMoving = true; } });
+        obj.GetComponent<EnemyBehaviour>().DeadSubject.Subscribe(_ => { Debug.Log("boss"); _BossLeft--; if (_BossLeft <= 0) { _isMoving = true; } });
     }
     private TextEventUI textUI;
     private void TextBlockFunction(ParagraphData.TextBlock block)
     {
         _isMoving = false;
+        input.SwitchCurrentActionMap("Story");
+
         textUI.StartTextEvent(block);
     }
     public void TextEventEnd()
     {
         _isMoving = true;
+        input.SwitchCurrentActionMap("Battle");
     }
     [SerializeField] private GameObject JobPanel;
     [SerializeField] private GameObject SkillPanel;
@@ -227,12 +191,12 @@ public class ParagraphManager : MonoBehaviour
         SkillPanel.SetActive(false);
         _isMoving = true;
     }
-    //------------------------------------------------------------------------------------------------------------------------
+  /*  //------------------------------------------------------------------------------------------------------------------------
     [SerializeField] private string name;
     [ContextMenu("CreateParagraph")]
     private void CreateParagraphData()
     {
         var data = ScriptableObject.CreateInstance(typeof(ParagraphData)) as ParagraphData;
         AssetDatabase.CreateAsset(data, "Assets/#MYASSET/Scripts/Systems/ParagraphManager/" + name + ".asset");
-    }
+    }*/
 }

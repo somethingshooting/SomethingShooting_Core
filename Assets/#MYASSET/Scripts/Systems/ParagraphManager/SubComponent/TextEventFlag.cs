@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class TextEventFlag : MonoBehaviour
 {
-    public ParagraphManager.ParagraphData.TextBlock block;
+    public ParagraphData.TextBlock block;
 
     [SerializeField] private TextAsset text;
     public string sample;
@@ -14,7 +14,7 @@ public class TextEventFlag : MonoBehaviour
     public void ReadTextAsset()
     {
         var array = text.text.Split(new string[] { "\r\n" },System.StringSplitOptions.None);
-        block.Texts = new ParagraphManager.ParagraphData.TextBlock.TextData[array.Length];
+        block.Texts = new ParagraphData.TextBlock.TextData[array.Length];
         for (int i = 0; i < array.Length; i++)
         {
             var item = array[i].Split(new string[] { "\r\n" }, System.StringSplitOptions.None);

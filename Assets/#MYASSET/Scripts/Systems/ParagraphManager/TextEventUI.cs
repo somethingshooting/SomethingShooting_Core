@@ -2,20 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(ParagraphManager))]
 public class TextEventUI : MonoBehaviour
 {
+    [SerializeField] private GameObject panel;
     [SerializeField] private Image[] CharactorImage;
     [SerializeField] private Text TextName;
     [SerializeField] private Text TextMessage;
 
+    private PlayerInput input;
     private ParagraphManager manager;
-    private ParagraphManager.ParagraphData.TextBlock CurrentBlock;
+    private ParagraphData.TextBlock CurrentBlock;
     int progress = -1;
-    public void StartTextEvent(ParagraphManager.ParagraphData.TextBlock block)
+
+    bool cannext = false;
+    float inputbuffer = 0.5f;
+    public void StartTextEvent(ParagraphData.TextBlock block)
     {
         progress = -1;
+        panel.SetActive(true);
         TextName.enabled = true;
         TextMessage.enabled = true;
         for (int i = 0; (i < block.Characters.Length && i <4); i++)
@@ -24,6 +31,7 @@ public class TextEventUI : MonoBehaviour
             CharactorImage[i].enabled = true;
         }
         CurrentBlock = block;
+        cannext = true;
         NextMessage();
     }
     [ContextMenu("NextMessage")]
@@ -45,6 +53,8 @@ public class TextEventUI : MonoBehaviour
             TextMessage.enabled = false;
             TextName.text = "";
             TextMessage.text = "";
+            panel.SetActive(false);
+            cannext = false;
             manager.TextEventEnd();
         }
     }
@@ -52,6 +62,7 @@ public class TextEventUI : MonoBehaviour
     private void Start()
     {
         manager = GetComponent<ParagraphManager>();
+        input = GetComponent<PlayerInput>();
         foreach (var item in CharactorImage)
         {
             item.enabled = false;
@@ -60,5 +71,26 @@ public class TextEventUI : MonoBehaviour
         TextMessage.enabled = false;
         TextName.text = "";
         TextMessage.text = "";
+    }
+
+    private void Update()
+    {
+        if (cannext)
+        {
+            if (inputbuffer <= 0)
+            {
+                if (input.actions["Next"].ReadValue<float>() > 0)
+                {
+                    NextMessage();
+                    inputbuffer = 0.5f;
+                }
+            }
+            else
+            {
+                inputbuffer -= Time.deltaTime;
+            }
+        }
+        if(input.actions["Next"].ReadValue<float>()>0)
+        Debug.Log(input.actions["Next"].ReadValue<float>());
     }
 }

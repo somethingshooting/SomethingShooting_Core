@@ -14,11 +14,11 @@ public class SkillSaver : MonoBehaviour
         ISkill skill = Skillcomponent as ISkill;
 
         var data = ScriptableObject.CreateInstance(typeof(SkillData)) as SkillData;
-        AssetDatabase.CreateAsset(data, "Assets/#MYASSET/Scripts/Skills/Data/" + skill.SkillName + ".asset");
         data = new SkillData();
         data.SkillName = skill.SkillName;
         data.Json = JsonUtility.ToJson(Skillcomponent);
-        data.Type = Skillcomponent.GetType();
+        data.Type = Skillcomponent.GetType().ToString();
+        AssetDatabase.CreateAsset(data, "Assets/#MYASSET/Scripts/Skills/Data/" + skill.SkillName + ".asset");
     }
 }
 #endif

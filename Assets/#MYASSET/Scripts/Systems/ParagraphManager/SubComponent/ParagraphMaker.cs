@@ -8,16 +8,17 @@ public class ParagraphMaker : MonoBehaviour
 {
     [SerializeField]
     private string _Name;
-    private ParagraphManager.ParagraphData data;
+    private ParagraphData data;
     [ContextMenu("ScanParagraph")]
     private void StartScan()
     {
-        data = ScriptableObject.CreateInstance(typeof(ParagraphManager.ParagraphData)) as ParagraphManager.ParagraphData;
-        AssetDatabase.CreateAsset(data, "Assets/#MYASSET/Scripts/Systems/ParagraphManager/" + name + ".asset");
+        data = ScriptableObject.CreateInstance(typeof(ParagraphData)) as ParagraphData;
+        
         ScanEnemy();
         ScanBoss();
         ScanText();
         ScanJobSelect();
+        AssetDatabase.CreateAsset(data, "Assets/#MYASSET/Scripts/Systems/ParagraphManager/" + _Name + ".asset");
     }
     private void ScanEnemy()
     {
@@ -32,10 +33,10 @@ public class ParagraphMaker : MonoBehaviour
             }
         }
         enemylist = _SortWithZ(enemylist);
-        data.EnemyBlocks = new ParagraphManager.ParagraphData.EnemyBlock[enemylist.Count];
+        data.EnemyBlocks = new ParagraphData.EnemyBlock[enemylist.Count];
         for (int i = 0; i < enemylist.Count; i++)
         {
-            data.EnemyBlocks[i] = new ParagraphManager.ParagraphData.EnemyBlock();
+            data.EnemyBlocks[i] = new ParagraphData.EnemyBlock();
             data.EnemyBlocks[i].Position = enemylist[i].transform.position;
             data.EnemyBlocks[i].Prefab = PrefabUtility.GetCorrespondingObjectFromSource(enemylist[i]);
         }
@@ -71,10 +72,10 @@ public class ParagraphMaker : MonoBehaviour
             }
         }
         enemylist = _SortWithZ(enemylist);
-        data.BossBlocks = new ParagraphManager.ParagraphData.BossBlock[enemylist.Count];
+        data.BossBlocks = new ParagraphData.BossBlock[enemylist.Count];
         for (int i = 0; i < enemylist.Count; i++)
         {
-            data.BossBlocks[i] = new ParagraphManager.ParagraphData.BossBlock();
+            data.BossBlocks[i] = new ParagraphData.BossBlock();
             data.BossBlocks[i].Position = enemylist[i].transform.position;
             data.BossBlocks[i].Prefab = PrefabUtility.GetCorrespondingObjectFromSource(enemylist[i]);
         }
@@ -88,10 +89,10 @@ public class ParagraphMaker : MonoBehaviour
             obj.Add(ins[i].gameObject);
         }
         obj = _SortWithZ(obj);
-        data.TextBlocks = new ParagraphManager.ParagraphData.TextBlock[obj.Count];
+        data.TextBlocks = new ParagraphData.TextBlock[obj.Count];
         for (int i = 0; i < obj.Count; i++)
         {
-            data.TextBlocks[i] = new ParagraphManager.ParagraphData.TextBlock();
+            data.TextBlocks[i] = new ParagraphData.TextBlock();
             data.TextBlocks[i].Position = obj[i].transform.position;
             var item = obj[i].GetComponent<TextEventFlag>();
             data.TextBlocks[i].Characters = item.block.Characters ;
@@ -107,10 +108,10 @@ public class ParagraphMaker : MonoBehaviour
             obj.Add(ins[i].gameObject);
         }
         obj = _SortWithZ(obj);
-        data.JobSelectBlocks = new ParagraphManager.ParagraphData.JobSelectBlock[obj.Count];
+        data.JobSelectBlocks = new ParagraphData.JobSelectBlock[obj.Count];
         for (int i = 0; i < obj.Count; i++)
         {
-            data.JobSelectBlocks[i] = new ParagraphManager.ParagraphData.JobSelectBlock();
+            data.JobSelectBlocks[i] = new ParagraphData.JobSelectBlock();
             data.JobSelectBlocks[i].Position = obj[i].transform.position;
         }
     }
