@@ -18,6 +18,7 @@ public abstract class EnemyBehaviour : MonoBehaviour, IHitPointObject
         if (_State.HP.Value<=0)
         {
             _DeadSubject.OnNext(Unit.Default);
+            Destroy(gameObject);
         }
     }
 

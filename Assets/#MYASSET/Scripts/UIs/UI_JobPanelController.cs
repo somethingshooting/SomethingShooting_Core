@@ -20,9 +20,11 @@ public class UI_JobPanelController : MonoBehaviour
     public JobData SelectJob { get; private set; } = null;
     private List<Text> _SkillName_Text = new List<Text>();
 
+    private ParagraphManager _ParagraphManager;
     void Start()
     {
         _PlayerJobController = GameObject.FindWithTag("Player").GetComponent<PlayerJobController>();
+        _ParagraphManager = FindObjectOfType<ParagraphManager>();
         _DetailPanel = transform.Find("DetailPanel").gameObject;
         if (_DetailPanel.activeSelf)
         {
@@ -76,6 +78,7 @@ public class UI_JobPanelController : MonoBehaviour
         }
 
         gameObject.SetActive(false);
+        _ParagraphManager.JobSelectEnd();
     }
 
     private void InstantiateJobButton(JobData jobData)
