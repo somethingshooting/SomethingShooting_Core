@@ -5,25 +5,27 @@ using UnityEngine;
 public class PlayerJobController : MonoBehaviour
 {
     private JobDataManager _JobDataManager = null;
-    private SkillController _SkillController = null;
 
-    [SerializeField]
-    private List<JobData> Jobs = new List<JobData>();
-
-    private void Start()
-    {
-        _SkillController = GetComponent<SkillController>();
-        _JobDataManager = GameObject.FindWithTag("GameManager").GetComponent<JobDataManager>();
-    }
+    [SerializeField] private List<JobData> _CurrentJobs = new List<JobData>();
+    /// <summary> 現在取得しているJob </summary>
+    public List<JobData> CurrentJobs => _CurrentJobs;
 
     public void AddJob(JobData data)
     {
-        Jobs.Add(data);
+        _CurrentJobs.Add(data);
     }
 
     /// <summary>
     /// 取得可能なJobのリストを返す
     /// </summary>
     /// <returns></returns>
-    public List<JobData> AcquirableJobList() => _JobDataManager.AcquirableJobList(Jobs);
+    public List<JobData> AcquirableJobList()
+    {
+        if (_JobDataManager == null)
+        {
+            _JobDataManager = GameObject.FindWithTag("GameManager").GetComponent<JobDataManager>();
+        }
+
+        return _JobDataManager.AcquirableJobList(_CurrentJobs);
+    }
 }
