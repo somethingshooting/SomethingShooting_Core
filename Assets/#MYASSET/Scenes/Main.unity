@@ -1355,50 +1355,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1332911893
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1332911895}
-  - component: {fileID: 1332911894}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1332911894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1332911893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea40915c0d2febf45bbac5e642972ad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 1957939104}
---- !u!4 &1332911895
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1332911893}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03027582, y: 0.90048814, z: 0.18206716}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1408237069
 GameObject:
   m_ObjectHideFlags: 0
@@ -2294,6 +2250,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _CurrentJobs: []
+--- !u!114 &1734294243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734294230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca74325090a6c314ba6d8a4a8be481a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _NormalSkillData: {fileID: 11400000, guid: fdab7eb6a23006c43b48e1431f688e37, type: 2}
+  _ActiveSkillDatas:
+  - {fileID: 11400000, guid: 2a5201a5df3aa7a499fc663a1455becf, type: 2}
+  _PassiveSkillDatas: []
+--- !u!1 &1751534378 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5846639449012522116, guid: 232167209792b5f4d91b980d6735d879,
+    type: 3}
+  m_PrefabInstance: {fileID: 1231873159}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1783754934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2930,7 +2908,7 @@ MonoBehaviour:
   _ScrollSpeed: 1
   _SpownZ: 5
   JobPanel: {fileID: 756116750}
-  SkillPanel: {fileID: 1332911893}
+  SkillPanel: {fileID: 1751534378}
 --- !u!114 &1957939105
 MonoBehaviour:
   m_ObjectHideFlags: 0

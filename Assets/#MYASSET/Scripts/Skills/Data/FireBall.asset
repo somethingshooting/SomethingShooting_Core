@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bed7f90221759a4da8cd00e71965abe, type: 3}
   m_Name: FireBall
   m_EditorClassIdentifier: 
-  SkillName: 
-  Json: 
+  SkillName: FireBall
+  Flever: 
+  Type: AS_InstantiateBullet
+  Skilltype: 0
+  Json: '{"_SkillName":"FireBall","_AttributeType":2,"RecastTime":0.0,"SkillTime":0.5,"_Bullet":{"instanceID":15750},"_ShotTransform":{"instanceID":47358}}'

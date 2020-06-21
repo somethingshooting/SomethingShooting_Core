@@ -18,6 +18,7 @@ public class UI_SkillPanelController : MonoBehaviour
     private SkillController _SkillController = null;
     private UI_SkillSelectButtonBuilder _ButtonBuilder = null;
     private PlayerCurrentSkillData _PlayerCurrentData = null;
+    private ParagraphManager _ParagraphManager = null;
 
     /// <summary> 未装着のJobから見た取得しうるスキル </summary>
     private List<SkillData> _SelectableSkillDatas = new List<SkillData>();
@@ -52,6 +53,10 @@ public class UI_SkillPanelController : MonoBehaviour
         if (_PlayerCurrentData == null)
         {
             _PlayerCurrentData = GameObject.FindWithTag("Player").GetComponent<PlayerCurrentSkillData>();
+        }
+        if (_ParagraphManager == null)
+        {
+            _ParagraphManager = GameObject.FindWithTag("GameManager").GetComponent<ParagraphManager>();
         }
 
         UpdateSkillDatas();
@@ -130,35 +135,69 @@ public class UI_SkillPanelController : MonoBehaviour
 
     public void OnSuccess()
     {
-        if (SelectSkillData != null && CurrentSkillData != null)
+        if (SelectSkillData.Value == null) // 右 == null
         {
-            List<SkillData> list;
-            switch (SelectPattern.Value)
-            {
-                case SelectSkillPattern.Normal:
-                    _PlayerCurrentData.SetNormalSkill(_CurrentSkillData.Value);
-                    break;
-                case SelectSkillPattern.Active:
-                    list = new List<SkillData>(_PlayerCurrentData.ActiveSkillDatas);
-                    list[list.IndexOf(_CurrentSkillData.Value)] = _SelectSkillData.Value;
-
-                    _PlayerCurrentData.SetActiveSkills(list);
-                    break;
-                case SelectSkillPattern.Passive:
-                    list = new List<SkillData>(_PlayerCurrentData.PassiveSkillDatas);
-                    list[list.IndexOf(_CurrentSkillData.Value)] = _SelectSkillData.Value;
-
-                    _PlayerCurrentData.SetPassiveSkills(list);
-                    break;
-            }
-            UpdateSkillDatas();
-            ChangeViewButtonsPattern();
+            return;
         }
+
+        List<SkillData> list;
+
+        switch (SelectPattern.Value)
+        {
+            case SelectSkillPattern.Normal:
+
+                if (_CurrentSkillData.Value == null && _PlayerCurrentData.NormalSkillData != null)
+                {
+                    return;
+                }
+                _PlayerCurrentData.SetNormalSkill(_CurrentSkillData.Value); // 入れ替え
+                break;
+            case SelectSkillPattern.Active:
+                list = new List<SkillData>(_PlayerCurrentData.ActiveSkillDatas);
+
+                if (_CurrentSkillData.Value == null && list.Count >0)
+                {
+                    return;
+                }
+                if (list.Count > 0 && _CurrentSkillData.Value != null)
+                {
+                    list[list.IndexOf(_CurrentSkillData.Value)] = _SelectSkillData.Value;
+                }
+                else if (list.Count == 0)
+                {
+                    list.Add(_CurrentSkillData.Value);
+                }
+
+                _PlayerCurrentData.SetActiveSkills(list);
+                break;
+            case SelectSkillPattern.Passive:
+                list = new List<SkillData>(_PlayerCurrentData.PassiveSkillDatas);
+
+                if (_CurrentSkillData.Value == null && list.Count > 0)
+                {
+                    return;
+                }
+                if (list.Count > 0)
+                {
+                    list[list.IndexOf(_CurrentSkillData.Value)] = _SelectSkillData.Value;
+                }
+                else
+                {
+                    list.Add(_SelectSkillData.Value);
+                }
+
+                _PlayerCurrentData.SetPassiveSkills(list);
+                break;
+        }
+        UpdateSkillDatas();
+        ChangeViewButtonsPattern();
+
     }
 
     // スキル設定パネルを閉じる
     public void CloseSkillSelectPanel()
     {
+        _ParagraphManager.SkillSelectEnd();
         gameObject.SetActive(false);
     }
 
