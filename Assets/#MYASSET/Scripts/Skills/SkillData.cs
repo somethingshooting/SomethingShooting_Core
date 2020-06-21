@@ -5,6 +5,12 @@ using UnityEngine;
 public class SkillData : ScriptableObject
 {
     public string SkillName;
-    public System.Type Type;
+    public string Type;
+    public SkillType Skilltype;
     public string Json;
+
+    public enum SkillType
+    {
+        passive,active,normal
+    }
 }
