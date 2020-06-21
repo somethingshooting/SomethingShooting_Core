@@ -1,18 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_SkillButtonController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private bool _IsSelect = false;
+
+    public SkillData SkillData { get; private set; } = null;
+    private Button _Button = null;
+
+    private void Start()
     {
-        
+        _Button = GetComponent<Button>();
+        _Button.onClick.AddListener(OnButton);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetSkillData(SkillData data)
     {
-        
+        SkillData = data;
+    }
+
+    public void OnButton()
+    {
+        Debug.Log(SkillData.SkillName + "のボタンが押されました");
     }
 }
